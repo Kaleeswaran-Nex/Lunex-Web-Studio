@@ -105,8 +105,9 @@ const WhyChooseUs = () => {
 
                 <div style={{
                     display: 'grid',
-                    gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-                    gap: '2rem'
+                    gridTemplateColumns: 'repeat(auto-fit, minmax(min(280px, 100%), 1fr))',
+                    gap: '1.5rem',
+                    padding: '0 1rem'
                 }}>
                     {features.map((feature, index) => (
                         <motion.div

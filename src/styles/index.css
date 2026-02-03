@@ -282,3 +282,58 @@ body {
         transform: rotate(360deg);
     }
 }
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 1024px) {
+    :root {
+        --glass-blur: 10px;
+    }
+
+    body {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .glass-panel {
+        padding: 1.5rem;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        padding: 0.8rem 1.8rem;
+        font-size: 0.9rem;
+    }
+
+    /* Prevent horizontal scroll */
+    .app-container {
+        overflow-x: hidden;
+        width: 100%;
+        position: relative;
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --glass-blur: 8px;
+    }
+
+    h1 {
+        font-size: 2.5rem !important;
+    }
+
+    h2 {
+        font-size: 1.8rem !important;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-header {
+        top: 60px !important;
+        /* Move down if TopContactBar wraps */
+    }
+}

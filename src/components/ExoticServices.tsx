@@ -63,9 +63,10 @@ const ExoticServices = () => {
                     transition={{ delay: 0.2 }}
                     style={{
                         fontFamily: 'var(--font-serif)',
-                        fontSize: '3rem',
+                        fontSize: 'clamp(2rem, 8vw, 3rem)',
                         color: 'var(--accent-cream)',
-                        marginTop: '1rem'
+                        marginTop: '1rem',
+                        padding: '0 1rem'
                     }}
                 >
                     Our Craft & Expertise
@@ -75,10 +76,11 @@ const ExoticServices = () => {
             {/* Grid of Cards */}
             <div style={{
                 display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-                gap: '2rem',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(min(300px, 100%), 1fr))',
+                gap: '1.5rem',
                 maxWidth: '1400px',
-                margin: '0 auto'
+                margin: '0 auto',
+                padding: '0 1rem'
             }}>
                 {services.map((s, i) => (
                     <motion.div
@@ -89,10 +91,11 @@ const ExoticServices = () => {
                         transition={{ delay: i * 0.1, duration: 0.6 }}
                         className="glass-panel"
                         style={{
-                            padding: '2rem',
+                            padding: '1.5rem',
                             display: 'flex',
                             flexDirection: 'column',
-                            height: '450px',
+                            minHeight: '400px',
+                            height: 'auto',
                             justifyContent: 'space-between',
                             position: 'relative',
                             overflow: 'hidden',

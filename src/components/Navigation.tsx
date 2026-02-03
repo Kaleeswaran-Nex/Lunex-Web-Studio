@@ -1,10 +1,16 @@
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
+import { useState } from 'react';
 import logo from '../assets/logo_original.png';
 
 const Navigation = () => {
     const location = useLocation();
     const isHome = location.pathname === '/';
+    const [isOpen, setIsOpen] = useState(false);
+
+    const toggleMenu = () => setIsOpen(!isOpen);
+
+    const navLinks = ['Craft', 'Vision', 'Our Work', 'Connect'];
 
     return (
         <motion.nav
@@ -13,19 +19,19 @@ const Navigation = () => {
             transition={{ duration: 1, delay: 0.5 }}
             style={{
                 position: 'fixed',
-                top: '40px', // Adjusted for TopContactBar
+                top: '40px',
                 left: 0,
                 right: 0,
-                padding: '0.8rem 3rem',
+                padding: '0.8rem 1rem',
                 display: 'flex',
                 justifyContent: 'space-between',
                 alignItems: 'center',
                 zIndex: 100,
-                background: 'rgba(5, 4, 10, 0.6)', // More transparent but darker
-                backdropFilter: 'blur(16px)',      // High quality frost
+                background: 'rgba(5, 4, 10, 0.8)',
+                backdropFilter: 'blur(16px)',
                 borderBottom: '1px solid rgba(212, 175, 55, 0.08)',
-                boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)'
             }}
+            className="nav-header"
         >
             <div style={{ display: 'flex', alignItems: 'center' }}>
                 <Link
@@ -33,133 +39,131 @@ const Navigation = () => {
                     style={{
                         display: 'flex',
                         alignItems: 'center',
-                        gap: '1rem',
+                        gap: '0.75rem',
                         textDecoration: 'none',
-                        padding: '0.5rem',
-                        transition: 'transform 0.3s ease',
                     }}
-                    onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.02)'}
-                    onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+                    onClick={() => setIsOpen(false)}
                 >
-                    {/* Logo with elegant glow ring */}
-                    <div style={{
-                        position: 'relative',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                    }}>
-                        {/* Outer glow ring */}
+                    <div className="logo-wrapper" style={{ position: 'relative', width: '42px', height: '42px' }}>
                         <div style={{
                             position: 'absolute',
-                            width: '58px',
-                            height: '58px',
+                            inset: '-3px',
                             borderRadius: '50%',
-                            background: 'conic-gradient(from 0deg, transparent, rgba(216, 180, 254, 0.4), transparent, rgba(167, 139, 250, 0.3), transparent)',
+                            background: 'conic-gradient(from 0deg, transparent, rgba(216, 180, 254, 0.4), transparent)',
                             animation: 'spin 8s linear infinite',
                         }} />
-                        <div className="logo-container" style={{
-                            width: '52px',
-                            height: '52px',
+                        <div style={{
+                            width: '100%',
+                            height: '100%',
                             borderRadius: '50%',
                             overflow: 'hidden',
-                            border: '2px solid rgba(216, 180, 254, 0.5)',
-                            boxShadow: '0 0 20px rgba(216, 180, 254, 0.25), inset 0 0 15px rgba(139, 92, 246, 0.1)',
-                            background: 'linear-gradient(135deg, #0a0618 0%, #1a0f2e 100%)',
+                            border: '1px solid rgba(216, 180, 254, 0.5)',
                             position: 'relative',
                             zIndex: 1,
                         }}>
-                            <img
-                                src={logo}
-                                alt="Lunex Logo"
-                                style={{
-                                    width: '100%',
-                                    height: '100%',
-                                    objectFit: 'cover',
-                                }}
-                            />
+                            <img src={logo} alt="Logo" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                         </div>
                     </div>
-
-                    {/* Brand Name - Elegant Typography */}
-                    <div style={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'flex-start',
-                    }}>
+                    <div style={{ display: 'flex', flexDirection: 'column' }}>
                         <span style={{
                             fontFamily: '"Cinzel", serif',
-                            fontSize: '1.6rem',
-                            letterSpacing: '0.15em',
-                            fontWeight: 600,
-                            background: 'linear-gradient(135deg, #ffffff 0%, #e9d5ff 50%, #d8b4fe 100%)',
-                            WebkitBackgroundClip: 'text',
-                            WebkitTextFillColor: 'transparent',
-                            backgroundClip: 'text',
-                            filter: 'drop-shadow(0 0 10px rgba(216, 180, 254, 0.3))',
-                        }}>
-                            LUNEX
-                        </span>
-                        <span style={{
-                            fontFamily: 'var(--font-body)',
-                            fontSize: '0.6rem',
-                            letterSpacing: '0.35em',
-                            color: 'rgba(216, 180, 254, 0.6)',
-                            textTransform: 'uppercase',
-                            marginTop: '-2px',
-                        }}>
-                            Web Studio
-                        </span>
+                            fontSize: '1.2rem',
+                            letterSpacing: '0.1em',
+                            fontWeight: 700,
+                            color: '#fff'
+                        }}>LUNEX</span>
+                        <span style={{ fontSize: '0.5rem', letterSpacing: '0.2em', color: 'rgba(255,255,255,0.5)' }}>STUDIO</span>
                     </div>
                 </Link>
             </div>
 
-            <div className="links" style={{ display: 'flex', gap: '3rem' }}>
-                {['Craft', 'Vision', 'Our Work', 'Connect'].map((item) => {
+            {/* Desktop Links */}
+            <div className="desktop-links" style={{ display: 'flex', gap: '2rem' }}>
+                {navLinks.map((item) => {
                     const isOurWork = item === 'Our Work';
                     const target = isOurWork ? '/our-work' : (isHome ? `#${item.toLowerCase()}` : `/#${item.toLowerCase()}`);
-
-                    const commonStyle = {
-                        textDecoration: 'none',
-                        fontSize: '0.8rem',
-                        textTransform: 'uppercase' as const,
-                        letterSpacing: '0.2em',
-                        opacity: 0.8,
-                        transition: 'color 0.3s',
-                        color: 'var(--accent-cream)'
-                    };
-
-                    const handleMouseEnter = (e: React.MouseEvent<HTMLAnchorElement>) => e.currentTarget.style.color = 'var(--accent-gold)';
-                    const handleMouseLeave = (e: React.MouseEvent<HTMLAnchorElement>) => e.currentTarget.style.color = 'var(--accent-cream)';
-
-                    if (isHome && !isOurWork) {
-                        return (
-                            <a
-                                key={item}
-                                href={target}
-                                style={commonStyle}
-                                onMouseEnter={handleMouseEnter}
-                                onMouseLeave={handleMouseLeave}
-                            >
-                                {item}
-                            </a>
-                        );
-                    }
-
                     return (
                         <Link
                             key={item}
                             to={target}
-                            style={commonStyle}
-                            onMouseEnter={handleMouseEnter}
-                            onMouseLeave={handleMouseLeave}
+                            style={{
+                                textDecoration: 'none',
+                                fontSize: '0.75rem',
+                                textTransform: 'uppercase',
+                                letterSpacing: '0.15em',
+                                color: 'var(--accent-cream)',
+                                opacity: 0.8
+                            }}
                         >
                             {item}
                         </Link>
                     );
                 })}
             </div>
+
+            {/* Hamburger Button */}
+            <div className="mobile-toggle" onClick={toggleMenu} style={{ cursor: 'pointer', padding: '0.5rem' }}>
+                <div style={{ width: '24px', height: '2px', background: '#fff', marginBottom: '6px', transition: '0.3s', transform: isOpen ? 'rotate(45deg) translate(6px, 6px)' : 'none' }} />
+                <div style={{ width: '24px', height: '2px', background: '#fff', marginBottom: '6px', opacity: isOpen ? 0 : 1 }} />
+                <div style={{ width: '24px', height: '2px', background: '#fff', transition: '0.3s', transform: isOpen ? 'rotate(-45deg) translate(5px, -6px)' : 'none' }} />
+            </div>
+
+            {/* Mobile Menu Overlay */}
+            <AnimatePresence>
+                {isOpen && (
+                    <motion.div
+                        initial={{ opacity: 0, x: '100%' }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: '100%' }}
+                        style={{
+                            position: 'fixed',
+                            inset: 0,
+                            top: '80px', // Adjusted to not cover header
+                            background: 'rgba(5, 4, 10, 0.98)',
+                            zIndex: 99,
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center',
+                            paddingTop: '4rem',
+                            gap: '2.5rem'
+                        }}
+                    >
+                        {navLinks.map((item) => {
+                            const isOurWork = item === 'Our Work';
+                            const target = isOurWork ? '/our-work' : (isHome ? `#${item.toLowerCase()}` : `/#${item.toLowerCase()}`);
+                            return (
+                                <Link
+                                    key={item}
+                                    to={target}
+                                    onClick={() => setIsOpen(false)}
+                                    style={{
+                                        textDecoration: 'none',
+                                        fontSize: '1.5rem',
+                                        fontFamily: 'var(--font-heading)',
+                                        color: '#fff',
+                                        letterSpacing: '0.2em'
+                                    }}
+                                >
+                                    {item}
+                                </Link>
+                            );
+                        })}
+                    </motion.div>
+                )}
+            </AnimatePresence>
+
+            <style>
+                {`
+                    .mobile-toggle { display: none; }
+                    @media (max-width: 900px) {
+                        .desktop-links { display: none !important; }
+                        .mobile-toggle { display: block; }
+                        .nav-header { padding: 0.8rem 1.5rem !important; }
+                    }
+                `}
+            </style>
         </motion.nav>
-    )
-}
+    );
+};
 
 export default Navigation;

@@ -28,7 +28,7 @@ const SmartHero: React.FC<Props> = ({ cursorPos }) => {
             ref={containerRef}
             style={{
                 height: '100vh',
-                width: '100vw',
+                width: '100%',
                 position: 'relative',
                 overflow: 'hidden',
                 display: 'flex',
@@ -77,7 +77,7 @@ const SmartHero: React.FC<Props> = ({ cursorPos }) => {
                             display: 'flex',
                             flexDirection: 'column',
                             alignItems: 'center',
-                            padding: '3rem 5rem',
+                            padding: '1.5rem',
                         }}
                     >
                         {/* Royal Crown Ornament */}
@@ -310,16 +310,16 @@ const SmartHero: React.FC<Props> = ({ cursorPos }) => {
                     animate={{ opacity: 1 }}
                     transition={{ delay: 2.2, duration: 1 }}
                     style={{
-                        maxWidth: '600px',
-                        fontSize: '1.1rem',
+                        maxWidth: '90%',
+                        fontSize: 'clamp(0.9rem, 2vw, 1.1rem)',
                         color: 'var(--accent-dim)',
-                        marginTop: '2rem',
-                        lineHeight: 1.8
+                        marginTop: '1.5rem',
+                        lineHeight: 1.6
                     }}
                 >
                     We fuse ancient storytelling with futuristic code to build websites that define legacies.
                     <br />
-                    <span style={{ fontSize: '0.9rem', color: 'var(--accent-gold)', opacity: 0.8 }}>
+                    <span style={{ fontSize: '0.8rem', color: 'var(--accent-gold)', opacity: 0.8 }}>
                         Top-Rated Web Designer in Karaikudi
                     </span>
                 </motion.p>
@@ -329,7 +329,7 @@ const SmartHero: React.FC<Props> = ({ cursorPos }) => {
                     animate={{ opacity: 1 }}
                     transition={{ delay: 2.5, duration: 1 }}
                     style={{
-                        marginTop: '4rem', // Moved into flow to prevent overlap
+                        marginTop: '2rem',
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
@@ -338,8 +338,8 @@ const SmartHero: React.FC<Props> = ({ cursorPos }) => {
                     }}
                     whileHover={{ scale: 1.05 }}
                 >
-                    <span style={{ fontSize: '0.8rem', letterSpacing: '0.3em', color: 'var(--accent-gold)' }}>EXPLORE</span>
-                    <div style={{ width: '1px', height: '40px', background: 'var(--accent-gold)' }}></div>
+                    <span style={{ fontSize: '0.7rem', letterSpacing: '0.3em', color: 'var(--accent-gold)' }}>EXPLORE</span>
+                    <div style={{ width: '1px', height: '30px', background: 'var(--accent-gold)' }}></div>
                 </motion.div>
             </div>
         </section>
