@@ -153,7 +153,7 @@ const Footer = () => {
                 fontFamily: 'var(--font-body)',
                 letterSpacing: '0.1em'
             }}>
-                © 2024 LUNEX WEB STUDIO. CRAFTED WITH ✦ PASSION
+                © LUNEX WEB STUDIO. CRAFTED WITH ✦ PASSION
             </div>
         </footer>
     );

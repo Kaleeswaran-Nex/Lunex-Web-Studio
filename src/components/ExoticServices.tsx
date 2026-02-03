@@ -11,28 +11,28 @@ const services = [
         id: "01",
         category: "DESIGN",
         title: "Exotic UI/UX",
-        desc: "Interfaces that feel rare and unknown. We craft visuals that captivate.",
+        desc: "Premium, high-end interfaces designed to wow your customers and provide seamless user experiences.",
         img: imgUIUX
     },
     {
         id: "02",
         category: "DEVELOPMENT",
         title: "Digital Architecture",
-        desc: "Robust, scalable React branding websites built on solid foundations.",
+        desc: "High-performance, scalable web applications built with cutting-edge technology for maximum stability.",
         img: imgArchitecture
     },
     {
         id: "03",
         category: "BRANDING",
         title: "Visual Storytelling",
-        desc: "Narratives woven into code. Your brand's mythos, digitally realized.",
+        desc: "We weave your brand's unique identity into every pixel, creating a digital legacy that stands out.",
         img: imgStorytelling
     },
     {
         id: "04",
         category: "INNOVATION",
         title: "AI Integration",
-        desc: "Neural networks for user prediction and automated intelligence.",
+        desc: "Smart AI solutions that automate tasks and predict user needs, keeping your business ahead of the curve.",
         img: imgAI
     }
 ];
@@ -54,7 +54,7 @@ const ExoticServices = () => {
                     className="text-exotic"
                     style={{ fontSize: '1rem', color: 'var(--accent-purple-glow)' }}
                 >
-                    The Treasury
+                    Our Services
                 </motion.h2>
                 <motion.h3
                     initial={{ opacity: 0, y: 20 }}
@@ -107,11 +107,12 @@ const ExoticServices = () => {
                             backgroundImage: `url(${s.img})`,
                             backgroundSize: 'cover',
                             backgroundPosition: 'center',
-                            opacity: 0.1,
+                            opacity: 0.15,
                             transition: 'opacity 0.4s ease',
                             zIndex: 0,
-                            filter: 'grayscale(100%) sepia(20%)'
+                            filter: 'grayscale(30%)'
                         }}
+
                             className="card-bg"
                         />
 
@@ -159,7 +160,8 @@ const ExoticServices = () => {
                         <style>
                             {`
                                 .glass-panel:hover .card-bg {
-                                    opacity: 0.25;
+                                    opacity: 0.45;
+                                    filter: grayscale(0%);
                                 }
                             `}
                         </style>

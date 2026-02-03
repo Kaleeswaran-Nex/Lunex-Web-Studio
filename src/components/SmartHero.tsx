@@ -63,29 +63,7 @@ const SmartHero: React.FC<Props> = ({ cursorPos }) => {
                 position: 'relative',
                 textAlign: 'center'
             }}>
-                {/* Brand Frame */}
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 1.2, ease: "easeOut" }}
-                    className="glass-panel"
-                    style={{
-                        padding: '1rem 3rem',
-                        backdropFilter: 'blur(5px)',
-                        border: '1px solid rgba(212, 175, 55, 0.3)',
-                        marginBottom: '1rem'
-                    }}
-                >
-                    <h2 className="text-exotic" style={{
-                        margin: 0,
-                        fontSize: 'clamp(1rem, 2vw, 1.5rem)',
-                        color: 'var(--accent-cream)',
-                        fontWeight: 600,
-                        letterSpacing: '0.4em'
-                    }}>
-                        EST. 2024
-                    </h2>
-                </motion.div>
+
 
                 {/* Main Headline */}
                 <motion.div style={{ opacity: opacityText, zIndex: 3, position: 'relative' }}>
