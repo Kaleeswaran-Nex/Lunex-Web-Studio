@@ -28,7 +28,7 @@ const ProcessSection = () => {
         <section id="vision" style={{
             minHeight: '100vh',
             background: 'var(--bg-void)',
-            padding: '5rem 5vw',
+            padding: 'clamp(3rem, 6vw, 5rem) clamp(1rem, 4vw, 5vw)',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center'

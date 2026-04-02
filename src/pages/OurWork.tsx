@@ -33,7 +33,7 @@ const OurWork = () => {
                     transition={{ duration: 0.8 }}
                     style={{ textAlign: 'center', marginBottom: '4rem' }}
                 >
-                    <h1 className="text-exotic" style={{ fontSize: '3rem', marginBottom: '1rem' }}>
+                    <h1 className="text-exotic" style={{ fontSize: 'clamp(1.8rem, 6vw, 3rem)', marginBottom: '1rem', overflowWrap: 'break-word', wordBreak: 'break-word', padding: '0 0.5rem' }}>
                         Our <span className="text-gradient-gold">Masterpieces</span>
                     </h1>
                     <p style={{ color: 'var(--accent-cream)', opacity: 0.8, maxWidth: '600px', margin: '0 auto' }}>
@@ -41,7 +41,7 @@ const OurWork = () => {
                     </p>
                 </motion.div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '3rem' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(320px, 100%), 1fr))', gap: '3rem' }}>
                     {projects.map((project, index) => (
                         <motion.a
                             key={project.id}

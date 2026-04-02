@@ -336,4 +336,8 @@ body {
         top: 60px !important;
         /* Move down if TopContactBar wraps */
     }
+
+    .text-exotic {
+        letter-spacing: 0.1em !important;
+    }
 }

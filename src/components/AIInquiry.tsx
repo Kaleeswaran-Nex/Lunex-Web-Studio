@@ -55,7 +55,7 @@ const AIInquiry = () => {
 
     return (
         <section id="connect" style={{
-            padding: '8rem 2rem',
+            padding: 'clamp(4rem, 8vw, 8rem) clamp(0.75rem, 3vw, 2rem)',
             minHeight: '100vh',
             background: 'var(--bg-void)',
             display: 'flex',
@@ -81,7 +81,7 @@ const AIInquiry = () => {
                 width: '100%',
                 margin: '0 auto',
                 display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(min(320px, 100%), 1fr))',
                 gap: '2.5rem',
                 alignItems: 'stretch',
                 position: 'relative',
@@ -94,7 +94,7 @@ const AIInquiry = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.8 }}
                     style={{
-                        padding: '3.5rem 3rem',
+                        padding: 'clamp(2rem, 5vw, 3.5rem) clamp(1.5rem, 4vw, 3rem)',
                         background: '#161b22', // Deeper slate/black from image
                         borderRadius: '2.5rem',
                         border: '1px solid rgba(255, 255, 255, 0.03)',
@@ -117,7 +117,7 @@ const AIInquiry = () => {
                     </p>
 
                     <h2 style={{
-                        fontSize: '3.2rem',
+                        fontSize: 'clamp(2rem, 6vw, 3.2rem)',
                         fontFamily: 'var(--font-serif)',
                         marginBottom: '2.5rem',
                         background: 'var(--gradient-gold)',
@@ -177,7 +177,7 @@ const AIInquiry = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.8, delay: 0.2 }}
                     style={{
-                        padding: '3.5rem 3rem',
+                        padding: 'clamp(2rem, 5vw, 3.5rem) clamp(1.5rem, 4vw, 3rem)',
                         background: '#0d1117', // Even darker for contrast as in image
                         borderRadius: '2.5rem',
                         border: '1px solid rgba(255, 255, 255, 0.05)',
@@ -189,7 +189,7 @@ const AIInquiry = () => {
                 >
                     <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
                         <h2 style={{
-                            fontSize: '2.8rem',
+                            fontSize: 'clamp(1.8rem, 5vw, 2.8rem)',
                             fontFamily: 'var(--font-heading)',
                             marginBottom: '1rem',
                             background: 'var(--gradient-gold)',

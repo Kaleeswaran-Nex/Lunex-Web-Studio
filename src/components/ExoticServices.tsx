@@ -42,7 +42,7 @@ const ExoticServices = () => {
         <section id="craft" style={{
             minHeight: '100vh',
             background: 'var(--bg-deep)',
-            padding: '5rem 5vw',
+            padding: 'clamp(3rem, 6vw, 5rem) clamp(1rem, 4vw, 5vw)',
             position: 'relative'
         }}>
             {/* Header */}

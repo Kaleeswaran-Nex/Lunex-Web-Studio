@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import logo from '../assets/logo_original.png';
 
 const Navigation = () => {
@@ -10,159 +11,278 @@ const Navigation = () => {
 
     const toggleMenu = () => setIsOpen(!isOpen);
 
+    // Lock body scroll when menu is open
+    useEffect(() => {
+        if (isOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+        return () => { document.body.style.overflow = ''; };
+    }, [isOpen]);
+
     const navLinks = ['Craft', 'Vision', 'Our Work', 'Connect'];
 
-    return (
-        <motion.nav
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.5 }}
-            style={{
-                position: 'fixed',
-                top: '40px',
-                left: 0,
-                right: 0,
-                padding: '0.8rem 1rem',
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                zIndex: 100,
-                background: 'rgba(5, 4, 10, 0.8)',
-                backdropFilter: 'blur(16px)',
-                borderBottom: '1px solid rgba(212, 175, 55, 0.08)',
-            }}
-            className="nav-header"
-        >
-            <div style={{ display: 'flex', alignItems: 'center' }}>
-                <Link
-                    to="/"
+    const mobileOverlay = (
+        <AnimatePresence>
+            {isOpen && (
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.3 }}
                     style={{
+                        position: 'fixed',
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        width: '100vw',
+                        height: '100vh',
+                        background: '#05040a',
+                        zIndex: 9999,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: 0,
+                    }}
+                >
+                    {/* Close Button */}
+                    <div
+                        onClick={toggleMenu}
+                        style={{
+                            position: 'absolute',
+                            top: '1.2rem',
+                            right: '1.5rem',
+                            cursor: 'pointer',
+                            zIndex: 10001,
+                            padding: '0.5rem',
+                        }}
+                    >
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                    </div>
+
+                    {/* Logo at top */}
+                    <div style={{
+                        position: 'absolute',
+                        top: '1rem',
+                        left: '1.5rem',
                         display: 'flex',
                         alignItems: 'center',
                         gap: '0.75rem',
-                        textDecoration: 'none',
-                    }}
-                    onClick={() => setIsOpen(false)}
-                >
-                    <div className="logo-wrapper" style={{ position: 'relative', width: '42px', height: '42px' }}>
+                    }}>
                         <div style={{
-                            position: 'absolute',
-                            inset: '-3px',
-                            borderRadius: '50%',
-                            background: 'conic-gradient(from 0deg, transparent, rgba(216, 180, 254, 0.4), transparent)',
-                            animation: 'spin 8s linear infinite',
-                        }} />
-                        <div style={{
-                            width: '100%',
-                            height: '100%',
+                            width: '36px',
+                            height: '36px',
                             borderRadius: '50%',
                             overflow: 'hidden',
                             border: '1px solid rgba(216, 180, 254, 0.5)',
-                            position: 'relative',
-                            zIndex: 1,
                         }}>
                             <img src={logo} alt="Logo" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                         </div>
+                        <div style={{ display: 'flex', flexDirection: 'column' }}>
+                            <span style={{
+                                fontFamily: '"Cinzel", serif',
+                                fontSize: '1rem',
+                                letterSpacing: '0.1em',
+                                fontWeight: 700,
+                                color: '#fff'
+                            }}>LUNEX</span>
+                            <span style={{ fontSize: '0.45rem', letterSpacing: '0.2em', color: 'rgba(255,255,255,0.5)' }}>STUDIO</span>
+                        </div>
                     </div>
-                    <div style={{ display: 'flex', flexDirection: 'column' }}>
-                        <span style={{
-                            fontFamily: '"Cinzel", serif',
-                            fontSize: '1.2rem',
-                            letterSpacing: '0.1em',
-                            fontWeight: 700,
-                            color: '#fff'
-                        }}>LUNEX</span>
-                        <span style={{ fontSize: '0.5rem', letterSpacing: '0.2em', color: 'rgba(255,255,255,0.5)' }}>STUDIO</span>
-                    </div>
-                </Link>
-            </div>
 
-            {/* Desktop Links */}
-            <div className="desktop-links" style={{ display: 'flex', gap: '2rem' }}>
-                {navLinks.map((item) => {
-                    const isOurWork = item === 'Our Work';
-                    const target = isOurWork ? '/our-work' : (isHome ? `#${item.toLowerCase()}` : `/#${item.toLowerCase()}`);
-                    return (
-                        <Link
-                            key={item}
-                            to={target}
-                            style={{
-                                textDecoration: 'none',
-                                fontSize: '0.75rem',
-                                textTransform: 'uppercase',
-                                letterSpacing: '0.15em',
-                                color: 'var(--accent-cream)',
-                                opacity: 0.8
-                            }}
-                        >
-                            {item}
-                        </Link>
-                    );
-                })}
-            </div>
-
-            {/* Hamburger Button */}
-            <div className="mobile-toggle" onClick={toggleMenu} style={{ cursor: 'pointer', padding: '0.5rem' }}>
-                <div style={{ width: '24px', height: '2px', background: '#fff', marginBottom: '6px', transition: '0.3s', transform: isOpen ? 'rotate(45deg) translate(6px, 6px)' : 'none' }} />
-                <div style={{ width: '24px', height: '2px', background: '#fff', marginBottom: '6px', opacity: isOpen ? 0 : 1 }} />
-                <div style={{ width: '24px', height: '2px', background: '#fff', transition: '0.3s', transform: isOpen ? 'rotate(-45deg) translate(5px, -6px)' : 'none' }} />
-            </div>
-
-            {/* Mobile Menu Overlay */}
-            <AnimatePresence>
-                {isOpen && (
-                    <motion.div
-                        initial={{ opacity: 0, x: '100%' }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: '100%' }}
-                        style={{
-                            position: 'fixed',
-                            inset: 0,
-                            top: '80px', // Adjusted to not cover header
-                            background: 'rgba(5, 4, 10, 0.98)',
-                            zIndex: 99,
-                            display: 'flex',
-                            flexDirection: 'column',
-                            alignItems: 'center',
-                            paddingTop: '4rem',
-                            gap: '2.5rem'
-                        }}
-                    >
-                        {navLinks.map((item) => {
+                    {/* Navigation Links */}
+                    <div style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        width: '100%',
+                        maxWidth: '320px',
+                    }}>
+                        {navLinks.map((item, index) => {
                             const isOurWork = item === 'Our Work';
                             const target = isOurWork ? '/our-work' : (isHome ? `#${item.toLowerCase()}` : `/#${item.toLowerCase()}`);
                             return (
-                                <Link
+                                <motion.div
                                     key={item}
-                                    to={target}
-                                    onClick={() => setIsOpen(false)}
-                                    style={{
-                                        textDecoration: 'none',
-                                        fontSize: '1.5rem',
-                                        fontFamily: 'var(--font-heading)',
-                                        color: '#fff',
-                                        letterSpacing: '0.2em'
-                                    }}
+                                    initial={{ opacity: 0, y: 15 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.05 + index * 0.08, duration: 0.35 }}
+                                    style={{ width: '100%', textAlign: 'center' }}
                                 >
-                                    {item}
-                                </Link>
+                                    <Link
+                                        to={target}
+                                        onClick={() => setIsOpen(false)}
+                                        style={{
+                                            textDecoration: 'none',
+                                            fontSize: '1.4rem',
+                                            fontFamily: 'var(--font-heading)',
+                                            color: '#fff',
+                                            letterSpacing: '0.25em',
+                                            textTransform: 'uppercase',
+                                            display: 'block',
+                                            padding: '1.25rem 2rem',
+                                            borderBottom: index < navLinks.length - 1 ? '1px solid rgba(251, 191, 36, 0.1)' : 'none',
+                                            transition: 'color 0.3s',
+                                        }}
+                                    >
+                                        {item}
+                                    </Link>
+                                </motion.div>
                             );
                         })}
-                    </motion.div>
-                )}
-            </AnimatePresence>
+                    </div>
 
-            <style>
-                {`
-                    .mobile-toggle { display: none; }
-                    @media (max-width: 900px) {
-                        .desktop-links { display: none !important; }
-                        .mobile-toggle { display: block; }
-                        .nav-header { padding: 0.8rem 1.5rem !important; }
-                    }
-                `}
-            </style>
-        </motion.nav>
+                    {/* Decorative bottom accent */}
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.5 }}
+                        style={{
+                            position: 'absolute',
+                            bottom: '2.5rem',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center',
+                            gap: '0.5rem',
+                        }}
+                    >
+                        <div style={{
+                            width: '40px',
+                            height: '1px',
+                            background: 'linear-gradient(90deg, transparent, rgba(251, 191, 36, 0.5), transparent)',
+                        }} />
+                        <span style={{
+                            fontSize: '0.6rem',
+                            letterSpacing: '0.3em',
+                            color: 'rgba(255,255,255,0.25)',
+                            fontFamily: 'var(--font-body)',
+                        }}>
+                            WEB STUDIO
+                        </span>
+                    </motion.div>
+                </motion.div>
+            )}
+        </AnimatePresence>
+    );
+
+    return (
+        <>
+            <motion.nav
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, delay: 0.5 }}
+                style={{
+                    position: 'fixed',
+                    top: '40px',
+                    left: 0,
+                    right: 0,
+                    padding: '0.8rem 1rem',
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    zIndex: 100,
+                    background: 'rgba(5, 4, 10, 0.8)',
+                    backdropFilter: 'blur(16px)',
+                    borderBottom: '1px solid rgba(212, 175, 55, 0.08)',
+                }}
+                className="nav-header"
+            >
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                    <Link
+                        to="/"
+                        style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '0.75rem',
+                            textDecoration: 'none',
+                        }}
+                        onClick={() => setIsOpen(false)}
+                    >
+                        <div className="logo-wrapper" style={{ position: 'relative', width: '42px', height: '42px' }}>
+                            <div style={{
+                                position: 'absolute',
+                                inset: '-3px',
+                                borderRadius: '50%',
+                                background: 'conic-gradient(from 0deg, transparent, rgba(216, 180, 254, 0.4), transparent)',
+                                animation: 'spin 8s linear infinite',
+                            }} />
+                            <div style={{
+                                width: '100%',
+                                height: '100%',
+                                borderRadius: '50%',
+                                overflow: 'hidden',
+                                border: '1px solid rgba(216, 180, 254, 0.5)',
+                                position: 'relative',
+                                zIndex: 1,
+                            }}>
+                                <img src={logo} alt="Logo" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                            </div>
+                        </div>
+                        <div style={{ display: 'flex', flexDirection: 'column' }}>
+                            <span style={{
+                                fontFamily: '"Cinzel", serif',
+                                fontSize: '1.2rem',
+                                letterSpacing: '0.1em',
+                                fontWeight: 700,
+                                color: '#fff'
+                            }}>LUNEX</span>
+                            <span style={{ fontSize: '0.5rem', letterSpacing: '0.2em', color: 'rgba(255,255,255,0.5)' }}>STUDIO</span>
+                        </div>
+                    </Link>
+                </div>
+
+                {/* Desktop Links */}
+                <div className="desktop-links" style={{ display: 'flex', gap: '2rem' }}>
+                    {navLinks.map((item) => {
+                        const isOurWork = item === 'Our Work';
+                        const target = isOurWork ? '/our-work' : (isHome ? `#${item.toLowerCase()}` : `/#${item.toLowerCase()}`);
+                        return (
+                            <Link
+                                key={item}
+                                to={target}
+                                style={{
+                                    textDecoration: 'none',
+                                    fontSize: '0.75rem',
+                                    textTransform: 'uppercase',
+                                    letterSpacing: '0.15em',
+                                    color: 'var(--accent-cream)',
+                                    opacity: 0.8
+                                }}
+                            >
+                                {item}
+                            </Link>
+                        );
+                    })}
+                </div>
+
+                {/* Hamburger Button */}
+                <div className="mobile-toggle" onClick={toggleMenu} style={{ cursor: 'pointer', padding: '0.5rem', zIndex: 10002 }}>
+                    <div style={{ width: '24px', height: '2px', background: '#fff', marginBottom: '6px', transition: '0.3s', transform: isOpen ? 'rotate(45deg) translate(6px, 6px)' : 'none' }} />
+                    <div style={{ width: '24px', height: '2px', background: '#fff', marginBottom: '6px', opacity: isOpen ? 0 : 1 }} />
+                    <div style={{ width: '24px', height: '2px', background: '#fff', transition: '0.3s', transform: isOpen ? 'rotate(-45deg) translate(5px, -6px)' : 'none' }} />
+                </div>
+
+                <style>
+                    {`
+                        .mobile-toggle { display: none; }
+                        @media (max-width: 900px) {
+                            .desktop-links { display: none !important; }
+                            .mobile-toggle { display: block; }
+                            .nav-header { padding: 0.8rem 1.5rem !important; }
+                        }
+                    `}
+                </style>
+            </motion.nav>
+
+            {/* Portal the mobile overlay outside the nav to avoid z-index stacking context issues */}
+            {createPortal(mobileOverlay, document.body)}
+        </>
     );
 };
 
