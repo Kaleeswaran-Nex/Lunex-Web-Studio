@@ -1,89 +1,81 @@
 import { motion } from 'framer-motion';
 
-const clients = [
-    "AURA DIGITAL", "ECOPLAST", "TECH SOLUTIONS", "AURA DIGITAL", "ECOPLAST", "TECH SOLUTIONS"
-];
-
 const LogoMarquee = () => {
+    const countries = [
+        { flag: '🇺🇸', name: 'United States' },
+        { flag: '🇬🇧', name: 'United Kingdom' },
+        { flag: '🇦🇪', name: 'UAE' },
+        { flag: '🇦🇺', name: 'Australia' },
+        { flag: '🇮🇳', name: 'India' },
+        { flag: '🇨🇦', name: 'Canada' },
+        { flag: '🇩🇪', name: 'Germany' },
+        { flag: '🇸🇬', name: 'Singapore' },
+    ];
+
+    const allCountries = [...countries, ...countries];
+
     return (
         <section style={{
-            padding: '4rem 0',
+            padding: '3rem 0', overflow: 'hidden',
             background: 'var(--bg-void)',
-            borderTop: '1px solid rgba(212, 175, 55, 0.1)',
-            borderBottom: '1px solid rgba(212, 175, 55, 0.1)',
-            overflow: 'hidden'
+            borderTop: '1px solid rgba(255,255,255,0.04)',
+            borderBottom: '1px solid rgba(255,255,255,0.04)',
         }}>
-            <motion.p
+            <motion.div
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
-                style={{
-                    textAlign: 'center',
-                    color: 'var(--accent-dim)',
-                    fontSize: '0.8rem',
-                    letterSpacing: '0.2em',
-                    textTransform: 'uppercase',
-                    marginBottom: '2rem'
-                }}
+                style={{ textAlign: 'center', marginBottom: '2rem' }}
             >
-                Trusted By Leading Brands
-            </motion.p>
+                <span style={{
+                    fontSize: '0.75rem', letterSpacing: '0.3em', color: 'var(--accent-dim)',
+                    fontFamily: 'var(--font-heading)',
+                }}>
+                    TRUSTED BY BUSINESSES ACROSS
+                </span>
+            </motion.div>
 
-            <div style={{ position: 'relative' }}>
+            <div style={{ position: 'relative', overflow: 'hidden' }}>
                 {/* Fade edges */}
                 <div style={{
-                    position: 'absolute',
-                    left: 0,
-                    top: 0,
-                    bottom: 0,
-                    width: '150px',
+                    position: 'absolute', left: 0, top: 0, bottom: 0, width: '80px',
                     background: 'linear-gradient(to right, var(--bg-void), transparent)',
-                    zIndex: 2
+                    zIndex: 2, pointerEvents: 'none',
                 }} />
                 <div style={{
-                    position: 'absolute',
-                    right: 0,
-                    top: 0,
-                    bottom: 0,
-                    width: '150px',
+                    position: 'absolute', right: 0, top: 0, bottom: 0, width: '80px',
                     background: 'linear-gradient(to left, var(--bg-void), transparent)',
-                    zIndex: 2
+                    zIndex: 2, pointerEvents: 'none',
                 }} />
 
-                <motion.div
-                    animate={{ x: [0, -960] }}
-                    transition={{
-                        x: {
-                            repeat: Infinity,
-                            repeatType: "loop",
-                            duration: 15,
-                            ease: "linear"
-                        }
-                    }}
-                    style={{
-                        display: 'flex',
-                        gap: '6rem',
-                        alignItems: 'center',
-                        width: 'fit-content'
-                    }}
-                >
-                    {[...clients, ...clients].map((client, index) => (
-                        <span
-                            key={index}
-                            style={{
-                                fontFamily: 'var(--font-heading)',
-                                fontSize: '1.5rem',
-                                color: 'rgba(212, 175, 55, 0.3)',
-                                whiteSpace: 'nowrap',
-                                letterSpacing: '0.2em',
-                                transition: 'color 0.3s'
-                            }}
-                        >
-                            {client}
-                        </span>
+                <div className="marquee-track" style={{
+                    display: 'flex', gap: '3rem',
+                    animation: 'marquee 25s linear infinite',
+                    width: 'fit-content',
+                }}>
+                    {allCountries.map((c, i) => (
+                        <div key={i} style={{
+                            display: 'flex', alignItems: 'center', gap: '0.6rem',
+                            flexShrink: 0, whiteSpace: 'nowrap',
+                        }}>
+                            <span style={{ fontSize: '1.8rem' }}>{c.flag}</span>
+                            <span style={{
+                                color: 'var(--accent-dim)', fontSize: '0.9rem',
+                                fontFamily: 'var(--font-heading)', letterSpacing: '0.1em',
+                            }}>
+                                {c.name}
+                            </span>
+                        </div>
                     ))}
-                </motion.div>
+                </div>
             </div>
+
+            <style>{`
+                @keyframes marquee {
+                    0% { transform: translateX(0); }
+                    100% { transform: translateX(-50%); }
+                }
+            `}</style>
         </section>
     );
 };

@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import whyChooseUsImg from '../assets/why_choose_us.png';
 
 const features = [
     {
@@ -104,53 +105,97 @@ const WhyChooseUs = () => {
                 </motion.div>
 
                 <div style={{
-                    display: 'grid',
-                    gridTemplateColumns: 'repeat(auto-fit, minmax(min(280px, 100%), 1fr))',
-                    gap: '1.5rem',
-                    padding: '0 1rem'
+                    display: 'flex',
+                    flexDirection: 'row',
+                    gap: '4rem',
+                    padding: '0 1rem',
+                    alignItems: 'center',
+                    flexWrap: 'wrap'
                 }}>
-                    {features.map((feature, index) => (
-                        <motion.div
-                            key={feature.title}
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: index * 0.1, duration: 0.5 }}
-                            whileHover={{ y: -5, borderColor: 'rgba(212, 175, 55, 0.5)' }}
-                            style={{
-                                padding: '2.5rem',
-                                background: 'rgba(15, 15, 25, 0.4)',
-                                border: '1px solid rgba(255, 255, 255, 0.05)',
-                                borderRadius: '1.5rem',
-                                transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-                                cursor: 'default',
-                                backdropFilter: 'blur(10px)'
-                            }}
-                        >
-                            <div style={{
-                                color: 'var(--accent-gold)',
-                                marginBottom: '1.5rem',
-                                filter: 'drop-shadow(0 0 15px rgba(251, 191, 36, 0.4))'
-                            }}>
-                                {feature.icon}
-                            </div>
-                            <h3 style={{
-                                fontFamily: 'var(--font-heading)',
-                                fontSize: '1.3rem',
-                                color: 'var(--accent-cream)',
-                                marginBottom: '0.75rem'
-                            }}>
-                                {feature.title}
-                            </h3>
-                            <p style={{
-                                color: 'var(--accent-dim)',
-                                fontSize: '0.95rem',
-                                lineHeight: 1.6
-                            }}>
-                                {feature.description}
-                            </p>
-                        </motion.div>
-                    ))}
+                    {/* Left: Image */}
+                    <motion.div
+                        initial={{ opacity: 0, x: -30 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8 }}
+                        style={{
+                            flex: '1 1 400px',
+                            position: 'relative'
+                        }}
+                    >
+                        <div style={{
+                            position: 'absolute',
+                            inset: '-2px',
+                            background: 'linear-gradient(135deg, rgba(251, 191, 36, 0.5), rgba(124, 58, 237, 0.5))',
+                            borderRadius: '2rem',
+                            filter: 'blur(20px)',
+                            opacity: 0.5,
+                            zIndex: 0
+                        }} />
+                        <img 
+                            src={whyChooseUsImg} 
+                            alt="Global Network" 
+                            style={{ 
+                                width: '100%', 
+                                borderRadius: '2rem', 
+                                border: '1px solid rgba(255, 255, 255, 0.1)',
+                                position: 'relative',
+                                zIndex: 1,
+                                boxShadow: '0 20px 40px rgba(0,0,0,0.5)'
+                            }} 
+                        />
+                    </motion.div>
+
+                    {/* Right: Features Array */}
+                    <div style={{
+                        flex: '1 1 500px',
+                        display: 'grid',
+                        gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+                        gap: '1.5rem',
+                    }}>
+                        {features.map((feature, index) => (
+                            <motion.div
+                                key={feature.title}
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: index * 0.1, duration: 0.5 }}
+                                whileHover={{ y: -5, borderColor: 'rgba(212, 175, 55, 0.5)' }}
+                                style={{
+                                    padding: '2rem',
+                                    background: 'rgba(15, 15, 25, 0.4)',
+                                    border: '1px solid rgba(255, 255, 255, 0.05)',
+                                    borderRadius: '1.5rem',
+                                    transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                                    cursor: 'default',
+                                    backdropFilter: 'blur(10px)'
+                                }}
+                            >
+                                <div style={{
+                                    color: 'var(--accent-gold)',
+                                    marginBottom: '1rem',
+                                    filter: 'drop-shadow(0 0 15px rgba(251, 191, 36, 0.4))'
+                                }}>
+                                    {feature.icon}
+                                </div>
+                                <h3 style={{
+                                    fontFamily: 'var(--font-heading)',
+                                    fontSize: '1.1rem',
+                                    color: 'var(--accent-cream)',
+                                    marginBottom: '0.5rem'
+                                }}>
+                                    {feature.title}
+                                </h3>
+                                <p style={{
+                                    color: 'var(--accent-dim)',
+                                    fontSize: '0.9rem',
+                                    lineHeight: 1.5
+                                }}>
+                                    {feature.description}
+                                </p>
+                            </motion.div>
+                        ))}
+                    </div>
                 </div>
             </div>
         </section>

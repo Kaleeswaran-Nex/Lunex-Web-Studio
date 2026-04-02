@@ -133,7 +133,7 @@ const LoadingScreen = ({ isLoading }: LoadingScreenProps) => {
                     >
                         <motion.span
                             style={{
-                                fontFamily: '"Cinzel", serif',
+                                fontFamily: '"Outfit", sans-serif',
                                 fontSize: '1.8rem',
                                 letterSpacing: '0.2em',
                                 fontWeight: 600,

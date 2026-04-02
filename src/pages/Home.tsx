@@ -4,6 +4,7 @@ import MarqueeBanner from '../components/MarqueeBanner'
 import AIInquiry from '../components/AIInquiry'
 import ProcessSection from '../components/ProcessSection'
 import ExoticServices from '../components/ExoticServices'
+import PricingSection from '../components/PricingSection'
 import ProjectShowcase from '../components/ProjectShowcase'
 import StatsSection from '../components/StatsSection'
 import WhyChooseUs from '../components/WhyChooseUs'
@@ -26,13 +27,14 @@ const Home = () => {
             <FloatingParticles />
             <SmartHero cursorPos={cursorPos} />
             <MarqueeBanner />
-            <ExoticServices />
-            <ProjectShowcase />
             <LogoMarquee />
+            <ExoticServices />
+            <PricingSection />
+            <ProjectShowcase />
             <StatsSection />
             <WhyChooseUs />
-            <ProcessSection />
             <Testimonials />
+            <ProcessSection />
             <CallToAction />
             <AIInquiry />
             <Footer />

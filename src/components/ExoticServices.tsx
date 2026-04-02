@@ -1,39 +1,74 @@
 import { motion } from 'framer-motion';
 
-// Placeholders for now, normally would be assets
-import imgArchitecture from '../assets/service_architecture.png';
-import imgUIUX from '../assets/service_uiux.png';
-import imgStorytelling from '../assets/service_storytelling.png';
-import imgAI from '../assets/service_ai.png';
-
 const services = [
     {
-        id: "01",
+        icon: (
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2" /><line x1="3" y1="9" x2="21" y2="9" />
+                <line x1="9" y1="21" x2="9" y2="9" />
+            </svg>
+        ),
         category: "DESIGN",
-        title: "Exotic UI/UX",
-        desc: "Premium, high-end interfaces designed to wow your customers and provide seamless user experiences.",
-        img: imgUIUX
+        title: "Stunning UI/UX Design",
+        desc: "Premium interfaces that captivate your audience and turn visitors into loyal customers. We design experiences, not just screens.",
+        highlight: "Avg. 40% increase in user engagement"
     },
     {
-        id: "02",
+        icon: (
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="16 18 22 12 16 6" /><polyline points="8 6 2 12 8 18" />
+                <line x1="14" y1="4" x2="10" y2="20" />
+            </svg>
+        ),
         category: "DEVELOPMENT",
-        title: "Digital Architecture",
-        desc: "High-performance, scalable web applications built with cutting-edge technology for maximum stability.",
-        img: imgArchitecture
+        title: "High-Performance Websites",
+        desc: "Lightning-fast, SEO-optimized websites built with React, Next.js & modern tech. Your site will load in under 2 seconds.",
+        highlight: "Built for speed & scalability"
     },
     {
-        id: "03",
+        icon: (
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="12" r="10" /><path d="M2 12h20" /><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+            </svg>
+        ),
+        category: "E-COMMERCE",
+        title: "Revenue-Driving Stores",
+        desc: "Custom e-commerce solutions that maximize conversions. From product pages to checkout — every step optimized for sales.",
+        highlight: "Complete shopping experience"
+    },
+    {
+        icon: (
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M12 2L2 7l10 5 10-5-10-5z" /><path d="M2 17l10 5 10-5" /><path d="M2 12l10 5 10-5" />
+            </svg>
+        ),
         category: "BRANDING",
-        title: "Visual Storytelling",
-        desc: "We weave your brand's unique identity into every pixel, creating a digital legacy that stands out.",
-        img: imgStorytelling
+        title: "Brand Identity & Strategy",
+        desc: "We craft compelling brand identities that tell your story. Logo design, color systems, typography — the complete brand kit.",
+        highlight: "Stand out from competitors"
     },
     {
-        id: "04",
-        category: "INNOVATION",
-        title: "AI Integration",
-        desc: "Smart AI solutions that automate tasks and predict user needs, keeping your business ahead of the curve.",
-        img: imgAI
+        icon: (
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
+            </svg>
+        ),
+        category: "CUSTOM",
+        title: "SaaS & Web Applications",
+        desc: "Complex dashboards, client portals, and custom web apps built for your specific business needs. Scalable and maintainable.",
+        highlight: "Enterprise-grade solutions"
+    },
+    {
+        icon: (
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+                <polyline points="3.27 6.96 12 12.01 20.73 6.96" /><line x1="12" y1="22.08" x2="12" y2="12" />
+            </svg>
+        ),
+        category: "HOSTING",
+        title: "Maintenance & Support",
+        desc: "Ongoing maintenance, hosting setup, SSL, performance monitoring & 24/7 support. We're with you long after launch.",
+        highlight: "Zero downtime guarantee"
     }
 ];
 
@@ -41,133 +76,130 @@ const ExoticServices = () => {
     return (
         <section id="craft" style={{
             minHeight: '100vh',
-            background: 'var(--bg-deep)',
-            padding: 'clamp(3rem, 6vw, 5rem) clamp(1rem, 4vw, 5vw)',
-            position: 'relative'
+            background: 'linear-gradient(180deg, var(--bg-void) 0%, var(--bg-deep) 50%, var(--bg-void) 100%)',
+            padding: 'clamp(4rem, 8vw, 6rem) clamp(1rem, 4vw, 5vw)',
+            position: 'relative',
         }}>
+            {/* Background glow */}
+            <div style={{
+                position: 'absolute', top: '30%', left: '50%', transform: 'translateX(-50%)',
+                width: '800px', height: '600px',
+                background: 'radial-gradient(circle, rgba(124, 58, 237, 0.06) 0%, transparent 60%)',
+                pointerEvents: 'none'
+            }} />
+
             {/* Header */}
-            <div style={{ textAlign: 'center', marginBottom: '5rem' }}>
-                <motion.h2
-                    initial={{ opacity: 0, y: 20 }}
+            <div style={{ textAlign: 'center', marginBottom: '4rem', position: 'relative', zIndex: 1 }}>
+                <motion.span
+                    initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="text-exotic"
-                    style={{ fontSize: '1rem', color: 'var(--accent-purple-glow)' }}
-                >
-                    Our Services
-                </motion.h2>
-                <motion.h3
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.2 }}
                     style={{
-                        fontFamily: 'var(--font-serif)',
-                        fontSize: 'clamp(2rem, 8vw, 3rem)',
-                        color: 'var(--accent-cream)',
-                        marginTop: '1rem',
-                        padding: '0 1rem'
+                        fontSize: '0.8rem', letterSpacing: '0.3em', color: 'var(--accent-gold)',
+                        fontFamily: 'var(--font-heading)', display: 'block', marginBottom: '1rem',
                     }}
                 >
-                    Our Craft & Expertise
-                </motion.h3>
+                    WHAT WE DO
+                </motion.span>
+                <motion.h2
+                    initial={{ opacity: 0, y: 15 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.1 }}
+                    style={{
+                        fontFamily: 'var(--font-serif)',
+                        fontSize: 'clamp(2rem, 5vw, 3.2rem)',
+                        color: 'var(--accent-cream)',
+                        marginBottom: '1rem',
+                    }}
+                >
+                    Services That <span style={{
+                        background: 'linear-gradient(135deg, #fbbf24, #f59e0b)',
+                        WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
+                    }}>Deliver Results</span>
+                </motion.h2>
+                <motion.p
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.2 }}
+                    style={{ color: 'var(--accent-dim)', maxWidth: '600px', margin: '0 auto', fontSize: '1.05rem' }}
+                >
+                    From concept to launch, we handle everything. Premium quality at a fraction of what US/UK agencies charge.
+                </motion.p>
             </div>
 
-            {/* Grid of Cards */}
+            {/* Grid */}
             <div style={{
                 display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(min(300px, 100%), 1fr))',
-                gap: '1.5rem',
-                maxWidth: '1400px',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(min(320px, 100%), 1fr))',
+                gap: '1.2rem',
+                maxWidth: '1200px',
                 margin: '0 auto',
-                padding: '0 1rem'
+                position: 'relative', zIndex: 1,
             }}>
                 {services.map((s, i) => (
                     <motion.div
                         key={i}
-                        initial={{ opacity: 0, y: 50 }}
+                        initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        transition={{ delay: i * 0.1, duration: 0.6 }}
-                        className="glass-panel"
+                        transition={{ delay: i * 0.08, duration: 0.5 }}
+                        whileHover={{ y: -6, borderColor: 'rgba(251, 191, 36, 0.4)' }}
                         style={{
-                            padding: '1.5rem',
+                            padding: 'clamp(1.5rem, 3vw, 2rem)',
+                            background: 'rgba(15, 10, 25, 0.5)',
+                            border: '1px solid rgba(255,255,255,0.06)',
+                            borderRadius: '1rem',
+                            backdropFilter: 'blur(10px)',
+                            transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                            cursor: 'default',
                             display: 'flex',
                             flexDirection: 'column',
-                            minHeight: '400px',
-                            height: 'auto',
-                            justifyContent: 'space-between',
-                            position: 'relative',
-                            overflow: 'hidden',
-                            cursor: 'pointer'
+                            gap: '1rem',
                         }}
-                        whileHover={{ translateY: -10 }}
                     >
-                        {/* Background Image Overlay (Subtle) */}
-                        <div style={{
-                            position: 'absolute',
-                            inset: 0,
-                            backgroundImage: `url(${s.img})`,
-                            backgroundSize: 'cover',
-                            backgroundPosition: 'center',
-                            opacity: 0.15,
-                            transition: 'opacity 0.4s ease',
-                            zIndex: 0,
-                            filter: 'grayscale(30%)'
-                        }}
-
-                            className="card-bg"
-                        />
-
-                        {/* Top: ID & Category */}
-                        <div style={{ zIndex: 1, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                            <span style={{
-                                fontFamily: 'var(--font-heading)',
-                                fontSize: '1.5rem',
-                                color: 'rgba(216, 180, 254, 0.4)'
+                        {/* Icon + Category */}
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                            <div style={{
+                                color: 'var(--accent-gold)',
+                                filter: 'drop-shadow(0 0 10px rgba(251, 191, 36, 0.3))',
                             }}>
-                                {s.id}
-                            </span>
+                                {s.icon}
+                            </div>
                             <span style={{
-                                fontSize: '0.75rem',
-                                letterSpacing: '0.2em',
-                                color: 'var(--accent-neon)',
-                                border: '1px solid rgba(168, 85, 247, 0.3)',
-                                padding: '0.25rem 0.75rem',
-                                borderRadius: '20px'
+                                fontSize: '0.65rem', letterSpacing: '0.15em', color: 'var(--accent-purple-glow)',
+                                border: '1px solid rgba(167, 139, 250, 0.25)',
+                                padding: '0.2rem 0.6rem', borderRadius: '20px',
                             }}>
                                 {s.category}
                             </span>
                         </div>
 
-                        {/* Middle/Bottom: Content */}
-                        <div style={{ zIndex: 1, marginTop: 'auto' }}>
-                            <h4 style={{
-                                fontFamily: 'var(--font-heading)',
-                                fontSize: '1.8rem',
-                                marginBottom: '1rem',
-                                color: 'var(--accent-cream)'
-                            }}>
-                                {s.title}
-                            </h4>
-                            <p style={{
-                                color: 'var(--accent-dim)',
-                                fontSize: '1rem',
-                                lineHeight: 1.6
-                            }}>
-                                {s.desc}
-                            </p>
-                        </div>
+                        {/* Content */}
+                        <h4 style={{
+                            fontFamily: 'var(--font-heading)', fontSize: '1.3rem',
+                            color: 'var(--accent-cream)', lineHeight: 1.3,
+                        }}>
+                            {s.title}
+                        </h4>
+                        <p style={{ color: 'var(--accent-dim)', fontSize: '0.95rem', lineHeight: 1.6, flex: 1 }}>
+                            {s.desc}
+                        </p>
 
-                        {/* Hover Border Glow */}
-                        <style>
-                            {`
-                                .glass-panel:hover .card-bg {
-                                    opacity: 0.45;
-                                    filter: grayscale(0%);
-                                }
-                            `}
-                        </style>
+                        {/* Highlight badge */}
+                        <div style={{
+                            display: 'flex', alignItems: 'center', gap: '0.4rem',
+                            padding: '0.4rem 0.8rem',
+                            background: 'rgba(251, 191, 36, 0.06)',
+                            border: '1px solid rgba(251, 191, 36, 0.12)',
+                            borderRadius: '6px', width: 'fit-content',
+                        }}>
+                            <span style={{ color: 'var(--accent-gold)', fontSize: '0.75rem' }}>✦</span>
+                            <span style={{ fontSize: '0.78rem', color: 'var(--accent-gold)', fontWeight: 500 }}>
+                                {s.highlight}
+                            </span>
+                        </div>
                     </motion.div>
                 ))}
             </div>
