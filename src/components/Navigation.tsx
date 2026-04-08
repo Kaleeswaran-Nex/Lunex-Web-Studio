@@ -9,6 +9,7 @@ const Navigation = () => {
     const isHome = location.pathname === '/';
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
+    const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
 
     const toggleMenu = () => setIsOpen(!isOpen);
 
@@ -27,7 +28,17 @@ const Navigation = () => {
         return () => { document.body.style.overflow = ''; };
     }, [isOpen]);
 
-    const navLinks = ['Craft', 'Vision', 'Our Work', 'Connect'];
+    const navLinks = ['Craft', 'Vision', 'Services', 'Our Work', 'Connect'];
+
+    const servicesList = [
+        { name: 'Digital Marketing', path: '/services/digital-marketing' },
+        { name: 'Web Development', path: '/services/web-development' },
+        { name: 'Mobile App Development', path: '/services/mobile-app-development' },
+        { name: 'Billing/Customized Softwares', path: '/services/custom-software' },
+        { name: 'CRM Services', path: '/services/crm' },
+        { name: 'Integration Services', path: '/services/integration' },
+        { name: 'E-Commerce Development', path: '/services/ecommerce' },
+    ];
 
     const mobileOverlay = (
         <AnimatePresence>
@@ -43,6 +54,7 @@ const Navigation = () => {
                         background: '#05040a', zIndex: 9999,
                         display: 'flex', flexDirection: 'column',
                         alignItems: 'center', justifyContent: 'center',
+                        overflowY: 'auto',
                     }}
                 >
                     {/* Close */}
@@ -67,8 +79,48 @@ const Navigation = () => {
                     </div>
 
                     {/* Nav Links */}
-                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', maxWidth: '320px' }}>
+                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', maxWidth: '320px', marginTop: '100px', paddingBottom: '100px' }}>
                         {navLinks.map((item, index) => {
+                            if (item === 'Services') {
+                                return (
+                                    <motion.div key={item} initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }}
+                                        transition={{ delay: 0.05 + index * 0.08, duration: 0.35 }}
+                                        style={{ width: '100%', textAlign: 'center' }}
+                                    >
+                                        <div onClick={() => setMobileServicesOpen(!mobileServicesOpen)} style={{
+                                            fontSize: '1.4rem', fontFamily: 'var(--font-heading)', color: '#fff',
+                                            letterSpacing: '0.25em', textTransform: 'uppercase',
+                                            padding: '1.25rem 2rem', borderBottom: '1px solid rgba(251, 191, 36, 0.1)',
+                                            cursor: 'pointer', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '0.5rem'
+                                        }}>
+                                            {item}
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ transform: mobileServicesOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.3s' }}>
+                                                <polyline points="6 9 12 15 18 9"></polyline>
+                                            </svg>
+                                        </div>
+                                        <AnimatePresence>
+                                            {mobileServicesOpen && (
+                                                <motion.div
+                                                    initial={{ height: 0, opacity: 0 }}
+                                                    animate={{ height: 'auto', opacity: 1 }}
+                                                    exit={{ height: 0, opacity: 0 }}
+                                                    style={{ overflow: 'hidden', background: 'rgba(255, 255, 255, 0.02)' }}
+                                                >
+                                                    {servicesList.map((service) => (
+                                                        <Link key={service.name} to={service.path} onClick={() => setIsOpen(false)} style={{
+                                                            display: 'block', padding: '0.8rem 1rem', textDecoration: 'none',
+                                                            color: 'var(--text-secondary)', fontSize: '0.9rem', borderBottom: '1px solid rgba(255, 255, 255, 0.05)'
+                                                        }}>
+                                                            {service.name}
+                                                        </Link>
+                                                    ))}
+                                                </motion.div>
+                                            )}
+                                        </AnimatePresence>
+                                    </motion.div>
+                                );
+                            }
+
                             const isOurWork = item === 'Our Work';
                             const target = isOurWork ? '/our-work' : (isHome ? `#${item.toLowerCase()}` : `/#${item.toLowerCase()}`);
                             return (
@@ -108,12 +160,10 @@ const Navigation = () => {
                     </div>
 
                     {/* Footer accent */}
-                    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}
-                        style={{ position: 'absolute', bottom: '2.5rem', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem' }}
-                    >
+                    <div style={{ paddingBottom: '2rem', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem' }}>
                         <div style={{ width: '40px', height: '1px', background: 'linear-gradient(90deg, transparent, rgba(251, 191, 36, 0.5), transparent)' }} />
                         <span style={{ fontSize: '0.6rem', letterSpacing: '0.3em', color: 'rgba(255,255,255,0.25)', fontFamily: 'var(--font-body)' }}>WEB STUDIO</span>
-                    </motion.div>
+                    </div>
                 </motion.div>
             )}
         </AnimatePresence>
@@ -159,10 +209,36 @@ const Navigation = () => {
                 {/* Desktop Links */}
                 <div className="desktop-links" style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
                     {navLinks.map((item) => {
+                        if (item === 'Services') {
+                            return (
+                                <div key={item} className="nav-dropdown-container">
+                                    <div style={{
+                                        display: 'flex', alignItems: 'center', gap: '0.25rem',
+                                        fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.15em',
+                                        color: 'var(--accent-cream)', opacity: 0.8, cursor: 'pointer',
+                                    }} className="nav-dropdown-trigger">
+                                        {item}
+                                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                            <polyline points="6 9 12 15 18 9"></polyline>
+                                        </svg>
+                                    </div>
+                                    <div className="nav-dropdown-menu">
+                                        <div className="nav-dropdown-inner">
+                                            {servicesList.map((service) => (
+                                                <Link key={service.name} to={service.path} className="nav-dropdown-item">
+                                                    {service.name}
+                                                </Link>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
+                            );
+                        }
+
                         const isOurWork = item === 'Our Work';
                         const target = isOurWork ? '/our-work' : (isHome ? `#${item.toLowerCase()}` : `/#${item.toLowerCase()}`);
                         return (
-                            <Link key={item} to={target} style={{
+                            <Link key={item} to={target} className="nav-link-item" style={{
                                 textDecoration: 'none', fontSize: '0.75rem',
                                 textTransform: 'uppercase', letterSpacing: '0.15em',
                                 color: 'var(--accent-cream)', opacity: 0.8,
@@ -201,6 +277,67 @@ const Navigation = () => {
 
                 <style>{`
                     .mobile-toggle { display: none; }
+                    
+                    .nav-dropdown-container {
+                        position: relative;
+                    }
+                    .nav-dropdown-menu {
+                        position: absolute;
+                        top: 100%;
+                        left: 50%;
+                        transform: translateX(-50%) translateY(15px);
+                        opacity: 0;
+                        visibility: hidden;
+                        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+                        padding-top: 1.5rem;
+                        z-index: 1000;
+                    }
+                    .nav-dropdown-inner {
+                        background: rgba(10, 6, 24, 0.95);
+                        backdrop-filter: blur(16px);
+                        border: 1px solid rgba(251, 191, 36, 0.15);
+                        border-radius: 12px;
+                        padding: 0.75rem;
+                        min-width: 260px;
+                        display: flex;
+                        flex-direction: column;
+                        box-shadow: 0 10px 40px rgba(0,0,0,0.5), 0 0 20px rgba(124, 58, 237, 0.1);
+                    }
+                    .nav-dropdown-container:hover .nav-dropdown-menu {
+                        opacity: 1;
+                        visibility: visible;
+                        transform: translateX(-50%) translateY(0);
+                    }
+                    .nav-dropdown-trigger {
+                        transition: all 0.3s;
+                    }
+                    .nav-dropdown-container:hover .nav-dropdown-trigger {
+                        opacity: 1 !important;
+                        color: var(--accent-gold) !important;
+                    }
+                    .nav-dropdown-container:hover .nav-dropdown-trigger svg {
+                        transform: rotate(180deg);
+                    }
+                    .nav-link-item:hover {
+                        opacity: 1 !important;
+                        color: var(--accent-gold) !important;
+                    }
+                    .nav-dropdown-item {
+                        color: var(--accent-cream);
+                        text-decoration: none;
+                        padding: 0.75rem 1rem;
+                        font-family: var(--font-body);
+                        font-size: 0.85rem;
+                        border-radius: 8px;
+                        transition: all 0.2s ease;
+                        display: block;
+                    }
+                    .nav-dropdown-item:hover {
+                        background: rgba(255, 255, 255, 0.05);
+                        color: var(--accent-gold);
+                        padding-left: 1.25rem;
+                    }
+
                     @media (max-width: 900px) {
                         .desktop-links { display: none !important; }
                         .mobile-toggle { display: block; }

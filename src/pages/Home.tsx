@@ -23,7 +23,7 @@ const Home = () => {
     };
 
     return (
-        <div className="home-container" onMouseMove={handleMouseMove}>
+        <main className="home-container" onMouseMove={handleMouseMove}>
             <FloatingParticles />
             <SmartHero cursorPos={cursorPos} />
             <MarqueeBanner />
@@ -39,7 +39,7 @@ const Home = () => {
             <AIInquiry />
             <Footer />
             <ScrollToTop />
-        </div>
+        </main>
     )
 }
 

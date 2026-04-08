@@ -25,7 +25,7 @@ const projects = [
 
 const OurWork = () => {
     return (
-        <div style={{ minHeight: '100vh', paddingTop: '100px', background: 'var(--bg-void)' }}>
+        <main style={{ minHeight: '100vh', paddingTop: '100px', background: 'var(--bg-void)' }}>
             <div style={{ padding: '0 2rem 4rem 2rem', maxWidth: '1200px', margin: '0 auto' }}>
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -151,7 +151,7 @@ const OurWork = () => {
                 </div>
             </div>
             <Footer />
-        </div>
+        </main>
     )
 }
 
