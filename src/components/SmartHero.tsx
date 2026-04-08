@@ -51,8 +51,10 @@ const SmartHero: React.FC<Props> = ({ cursorPos }) => {
                 setDisplayText(currentWord.slice(0, charIndex - 1));
             }, 40);
         } else if (isDeleting && charIndex === 0) {
-            setIsDeleting(false);
-            setWordIndex(prev => (prev + 1) % rotatingWords.length);
+            timeout = setTimeout(() => {
+                setIsDeleting(false);
+                setWordIndex(prev => (prev + 1) % rotatingWords.length);
+            }, 50);
         }
 
         return () => clearTimeout(timeout);
