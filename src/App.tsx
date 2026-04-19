@@ -6,6 +6,8 @@ import OurWork from './pages/OurWork'
 import TopContactBar from './components/TopContactBar'
 import LoadingScreen from './components/LoadingScreen'
 import PromoModal from './components/PromoModal'
+import FloatingActionButtons from './components/FloatingActionButtons'
+import Chatbot from './components/Chatbot'
 
 function App() {
   // Last Update: 2026-02-06T12:56
@@ -39,6 +41,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/our-work" element={<OurWork />} />
       </Routes>
+      <Chatbot />
+      <FloatingActionButtons />
     </div>
   )
 }
