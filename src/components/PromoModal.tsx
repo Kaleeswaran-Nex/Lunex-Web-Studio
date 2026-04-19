@@ -12,6 +12,8 @@ const PromoModal: React.FC<PromoModalProps> = ({ isOpen, onClose }) => {
   const [phone, setPhone] = useState('');
   const [countryCode, setCountryCode] = useState('+91');
   const [subscribe, setSubscribe] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
 
   // Close on escape key
   useEffect(() => {
@@ -24,10 +26,42 @@ const PromoModal: React.FC<PromoModalProps> = ({ isOpen, onClose }) => {
     return () => window.removeEventListener('keydown', handleEsc);
   }, [isOpen, onClose]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log({ email, phone: `${countryCode}${phone}`, subscribe });
-    onClose();
+    setIsSubmitting(true);
+    
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/lunexwebstudio@gmail.com", {
+        method: "POST",
+        headers: { 
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+            _subject: "Free Digital Marketing Consultation Request",
+            Email: email,
+            Phone: `${countryCode} ${phone}`,
+            Subscribe: subscribe ? 'Yes' : 'No'
+        })
+      });
+
+      if (response.ok) {
+        setIsSuccess(true);
+        setTimeout(() => {
+          onClose();
+          setIsSuccess(false);
+          setEmail('');
+          setPhone('');
+        }, 3000);
+      } else {
+        alert("Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      console.error("Form submission error:", error);
+      alert("Error submitting form. Please check your connection.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -60,12 +94,25 @@ const PromoModal: React.FC<PromoModalProps> = ({ isOpen, onClose }) => {
             </button>
 
             <div className="promo-content">
-              <h2 className="promo-title text-gradient-gold">
-                Free Digital Marketing Consultation
-              </h2>
-              <p className="promo-subtitle text-secondary">
-                We Service for All Businesses. Elevate your online presence today.
-              </p>
+              {isSuccess ? (
+                <div className="success-message" style={{ textAlign: 'center', padding: '2rem 0' }}>
+                  <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: 'spring' }}>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ width: '64px', height: '64px', color: '#4caf50', margin: '0 auto 1rem' }}>
+                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                      <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                    </svg>
+                  </motion.div>
+                  <h3 className="text-gradient-gold" style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>Request Sent Successfully!</h3>
+                  <p className="text-secondary">We will be in touch with you shortly.</p>
+                </div>
+              ) : (
+                <>
+                  <h2 className="promo-title text-gradient-gold">
+                    Free Digital Marketing Consultation
+                  </h2>
+                  <p className="promo-subtitle text-secondary">
+                    We Service for All Businesses. Elevate your online presence today.
+                  </p>
 
               <form onSubmit={handleSubmit} className="promo-form">
                 <div className="input-group">
@@ -127,10 +174,12 @@ const PromoModal: React.FC<PromoModalProps> = ({ isOpen, onClose }) => {
                   For more information on how we process your data for marketing communication. Check our <a href="#privacy">Privacy policy</a>.
                 </p>
 
-                <button type="submit" className="btn-primary promo-submit-btn">
-                  Book Now
+                <button type="submit" className="btn-primary promo-submit-btn" disabled={isSubmitting}>
+                  {isSubmitting ? 'Sending...' : 'Book Now'}
                 </button>
               </form>
+              </>
+              )}
             </div>
           </motion.div>
         </motion.div>
