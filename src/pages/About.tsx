@@ -60,7 +60,7 @@ const About = () => {
                             
                             <div className="mission-stats">
                                 <div className="stat-item">
-                                    <h3 className="text-gradient-gold">150+</h3>
+                                    <h3 className="text-gradient-gold">10+</h3>
                                     <p>Projects Delivered</p>
                                 </div>
                                 <div className="stat-item">

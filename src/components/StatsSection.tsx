@@ -2,8 +2,8 @@ import { motion } from 'framer-motion';
 import { useEffect, useState, useRef } from 'react';
 
 const stats = [
-    { number: 50, suffix: '+', label: 'Projects Delivered', icon: '🚀' },
-    { number: 10, suffix: '+', label: 'Countries Served', icon: '🌍' },
+    { number: 10, suffix: '+', label: 'Projects Delivered', icon: '🚀' },
+    { number: 3, suffix: '+', label: 'Countries Served', icon: '🌍' },
     { number: 98, suffix: '%', label: 'Client Satisfaction', icon: '⭐' },
     { number: 70, suffix: '%', label: 'Cost Savings', icon: '💰' },
 ];

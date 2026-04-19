@@ -14,8 +14,8 @@ const rotatingWords = [
 ];
 
 const trustBadges = [
-    { icon: '🌍', text: '10+ Countries Served' },
-    { icon: '⚡', text: '50+ Projects Delivered' },
+    { icon: '🌍', text: '3+ Countries Served' },
+    { icon: '⚡', text: '10+ Projects Delivered' },
     { icon: '⭐', text: '100% Client Satisfaction' },
     { icon: '💰', text: 'Save 70% vs US Agencies' },
 ];
