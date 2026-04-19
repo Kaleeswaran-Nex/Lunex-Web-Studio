@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import FloatingParticles from '../components/FloatingParticles';
 import Footer from '../components/Footer';

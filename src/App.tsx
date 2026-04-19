@@ -4,6 +4,7 @@ import Navigation from './components/Navigation'
 import Home from './pages/Home'
 import OurWork from './pages/OurWork'
 import About from './pages/About'
+import ServiceDetail from './pages/ServiceDetail'
 import TopContactBar from './components/TopContactBar'
 import LoadingScreen from './components/LoadingScreen'
 import PromoModal from './components/PromoModal'
@@ -42,6 +43,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/our-work" element={<OurWork />} />
+        <Route path="/services/:id" element={<ServiceDetail />} />
       </Routes>
       <Chatbot />
       <FloatingActionButtons />
