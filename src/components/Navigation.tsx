@@ -14,9 +14,19 @@ const Navigation = () => {
     const toggleMenu = () => setIsOpen(!isOpen);
 
     useEffect(() => {
-        const handleScroll = () => setScrolled(window.scrollY > 50);
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
+        let timeoutId: ReturnType<typeof setTimeout>;
+        const handleScroll = () => {
+            if (timeoutId) return;
+            timeoutId = setTimeout(() => {
+                setScrolled(window.scrollY > 50);
+                timeoutId = undefined as any;
+            }, 150); // Throttle to 150ms
+        };
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+            if (timeoutId) clearTimeout(timeoutId);
+        };
     }, []);
 
     useEffect(() => {

@@ -148,15 +148,15 @@ const ExoticServices = () => {
                         whileHover={{ y: -6, borderColor: 'rgba(251, 191, 36, 0.4)' }}
                         style={{
                             padding: 'clamp(1.5rem, 3vw, 2rem)',
-                            background: 'rgba(15, 10, 25, 0.5)',
+                            background: 'rgba(15, 10, 25, 0.8)',
                             border: '1px solid rgba(255,255,255,0.06)',
                             borderRadius: '1rem',
-                            backdropFilter: 'blur(10px)',
-                            transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                            transition: 'all 0.3s ease',
                             cursor: 'default',
                             display: 'flex',
                             flexDirection: 'column',
                             gap: '1rem',
+                            willChange: 'transform, border-color'
                         }}
                     >
                         {/* Icon + Category */}
