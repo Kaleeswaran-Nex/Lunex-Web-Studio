@@ -8,7 +8,6 @@ import imgDigitalMarketing from '../assets/service_digital_marketing.png';
 import imgWebDev from '../assets/service_web_dev.png';
 import imgMobileApp from '../assets/service_mobile_app.png';
 import imgCustomSoftware from '../assets/service_custom_software.png';
-import imgCrm from '../assets/service_crm.png';
 import imgIntegration from '../assets/service_integration.png';
 import imgEcommerce from '../assets/service_ecommerce.png';
 
@@ -58,25 +57,12 @@ const serviceData = {
         image: imgCustomSoftware,
         overview: 'We develop secure, customized software solutions designed to streamline your business workflow. From complex billing systems to complete ERP solutions, we automate your tedious tasks so you can focus on growth.',
         strategies: [
-            'Custom ERP & CRM Development',
+            'Custom ERP & Software Development',
             'Automated Invoicing & Billing Systems',
             'SaaS Product Architecture',
             'Legacy System Modernization'
         ],
         workDetails: 'We start with a deep dive into your operational bottlenecks. Our team then engineers robust software tailored specifically to your internal processes. With complex role-based access control and detailed financial reporting layers, we ensure transparency and efficiency.'
-    },
-    'crm': {
-        title: 'CRM Services',
-        subtitle: 'Foster Relationships, Accelerate Sales',
-        image: imgCrm,
-        overview: 'Customer Relationship Management (CRM) is the heart of a successful sales operation. We integrate and customize top-tier CRM platforms to help you manage leads, track conversions, and improve customer retention effortlessly.',
-        strategies: [
-            'HubSpot, Salesforce & Zoho Integrations',
-            'Lead Pipeline Customization',
-            'Automated Follow-up Sequences',
-            'Customer Analytics & Reporting'
-        ],
-        workDetails: 'We set up sophisticated automation workflows that nurture leads down the sales funnel automatically. By centralizing communication and structuring your sales pipelines, we ensure that your team never misses a follow-up or a lucrative opportunity.'
     },
     'integration': {
         title: 'Integration Services',

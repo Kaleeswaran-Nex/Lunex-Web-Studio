@@ -5,6 +5,7 @@ import Home from './pages/Home'
 import OurWork from './pages/OurWork'
 import About from './pages/About'
 import ServiceDetail from './pages/ServiceDetail'
+import TenXLanding from './pages/TenXLanding'
 import TopContactBar from './components/TopContactBar'
 import LoadingScreen from './components/LoadingScreen'
 import PromoModal from './components/PromoModal'
@@ -44,6 +45,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/our-work" element={<OurWork />} />
         <Route path="/services/:id" element={<ServiceDetail />} />
+        <Route path="/10x-your-brand" element={<TenXLanding />} />
       </Routes>
       <Chatbot />
       <FloatingActionButtons />

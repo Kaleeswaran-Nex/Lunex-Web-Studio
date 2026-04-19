@@ -39,8 +39,8 @@ const Navigation = () => {
     }, [isOpen]);
 
     const navLinks = [
-        { name: '10X YOUR BRAND', targetId: 'pricing' },
         { name: 'HOME', targetId: '' },
+        { name: '10X YOUR BRAND', targetId: '/10x-your-brand', isRoute: true },
         { name: 'ABOUT', targetId: '/about', isRoute: true },
         { name: 'SERVICES', targetId: 'services' },
         { name: 'CONTACT', targetId: 'connect' }
@@ -51,7 +51,6 @@ const Navigation = () => {
         { name: 'Web Development', path: '/services/web-development' },
         { name: 'Mobile App Development', path: '/services/mobile-app-development' },
         { name: 'Billing/Customized Softwares', path: '/services/custom-software' },
-        { name: 'CRM Services', path: '/services/crm' },
         { name: 'Integration Services', path: '/services/integration' },
         { name: 'E-Commerce Development', path: '/services/ecommerce' },
     ];

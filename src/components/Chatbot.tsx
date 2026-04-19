@@ -109,7 +109,6 @@ const Chatbot: React.FC = () => {
       addBotMessage("What digital marketing services are you interested in?", [
         "Website Development", 
         "Software Development", 
-        "ERP/CRM Integration", 
         "Web/App Development", 
         "Digital Marketing", 
         "Paid Ads Campaign"
@@ -235,6 +234,16 @@ const Chatbot: React.FC = () => {
 
       {showGreeting && !isOpen && (
         <div className="chatbot-greeting" onClick={toggleChat}>
+          <button 
+            className="greeting-close-btn" 
+            onClick={(e) => {
+              e.stopPropagation();
+              setShowGreeting(false);
+            }}
+            aria-label="Close greeting"
+          >
+            ×
+          </button>
           <p>Hi, Welcome to Lunex Web Studio!!</p>
         </div>
       )}

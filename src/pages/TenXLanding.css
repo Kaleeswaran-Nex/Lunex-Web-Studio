@@ -1,0 +1,309 @@
+.tenx-container {
+    min-height: 100vh;
+    background-color: var(--bg-void);
+    color: var(--accent-white);
+    position: relative;
+    overflow: hidden;
+    padding: 8rem 2rem 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tenx-bg-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 10% 20%, rgba(124, 58, 237, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(251, 191, 36, 0.1) 0%, transparent 40%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.tenx-grid-overlay {
+    position: absolute;
+    inset: 0;
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    mask-image: radial-gradient(circle at center, black, transparent);
+    -webkit-mask-image: radial-gradient(circle at center, black, transparent);
+    z-index: 1;
+}
+
+.tenx-content-wrapper {
+    max-width: 1300px;
+    width: 100%;
+    position: relative;
+    z-index: 10;
+}
+
+.tenx-hero-section {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.tenx-badge {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: rgba(251, 191, 36, 0.1);
+    color: var(--accent-gold);
+    border: 1px solid rgba(251, 191, 36, 0.3);
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    margin-bottom: 1.5rem;
+}
+
+.tenx-hero-text h1 {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-family: var(--font-heading);
+    line-height: 1.1;
+    margin-bottom: 2rem;
+}
+
+.tenx-lead {
+    font-size: 1.2rem;
+    color: var(--accent-dim);
+    line-height: 1.8;
+    max-width: 600px;
+    margin-bottom: 3rem;
+}
+
+.tenx-lead .highlight {
+    color: var(--accent-white);
+    font-weight: 600;
+    border-bottom: 2px solid var(--accent-gold);
+}
+
+.tenx-features-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.tenx-feature-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 1.5rem;
+    border-radius: 16px;
+    transition: var(--glass-blur);
+}
+
+.tenx-feature-card h3 {
+    color: var(--accent-gold);
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.tenx-feature-card p {
+    font-size: 0.85rem;
+    color: var(--accent-dim);
+}
+
+/* Form Styles */
+.tenx-form-wrapper {
+    background: rgba(10, 6, 24, 0.8) !important;
+    padding: 3rem;
+    border-radius: 30px;
+    border: 1px solid rgba(251, 191, 36, 0.15);
+}
+
+.form-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.form-header h2 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.form-header p {
+    color: var(--accent-dim);
+    font-size: 0.9rem;
+}
+
+.tenx-form-wrapper form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.tenx-form-wrapper input,
+.tenx-form-wrapper select,
+.tenx-form-wrapper textarea {
+    width: 100%;
+    padding: 1.2rem 1.5rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: white;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s;
+}
+
+.tenx-form-wrapper input:focus,
+.tenx-form-wrapper select:focus,
+.tenx-form-wrapper textarea:focus {
+    border-color: var(--accent-gold);
+    background: rgba(251, 191, 36, 0.05);
+}
+
+.dual-inputs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+}
+
+.tenx-submit-btn {
+    background: var(--gradient-gold);
+    color: var(--bg-void);
+    padding: 1.2rem;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(251, 191, 36, 0.3);
+    transition: transform 0.3s, box-shadow 0.3s;
+    margin-top: 1rem;
+}
+
+.tenx-submit-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(251, 191, 36, 0.4);
+}
+
+.form-footer-note {
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--accent-dim);
+    margin-top: 1.5rem;
+}
+
+.tenx-stats-strip {
+    display: flex;
+    justify-content: space-around;
+    padding: 4rem 0 0;
+    margin-top: 4rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.tenx-methodology-section {
+    margin-top: 8rem;
+    text-align: center;
+}
+
+.section-title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-family: var(--font-heading);
+    margin-bottom: 4rem;
+    color: var(--accent-white);
+}
+
+.methodology-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+}
+
+.method-step {
+    text-align: left;
+    position: relative;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.01);
+    border-left: 2px solid var(--accent-gold);
+    border-radius: 0 16px 16px 0;
+}
+
+.step-num {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 800;
+    color: var(--accent-gold);
+    margin-bottom: 1rem;
+    opacity: 0.6;
+}
+
+.method-step h4 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+}
+
+.method-step p {
+    color: var(--accent-dim);
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+.tenx-cta-banner {
+    margin-top: 8rem;
+    background: linear-gradient(135deg, rgba(251, 191, 36, 0.1), rgba(124, 58, 237, 0.05));
+    border: 1px solid rgba(251, 191, 36, 0.2);
+    padding: 4rem;
+    border-radius: 30px;
+    text-align: center;
+}
+
+.tenx-cta-banner h3 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.tenx-cta-banner p {
+    color: var(--accent-dim);
+}
+
+@media (max-width: 1024px) {
+    .tenx-hero-section {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+    
+    .tenx-hero-text {
+        text-align: center;
+    }
+    
+    .tenx-lead {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .tenx-features-grid {
+        justify-content: center;
+    }
+
+    .methodology-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .tenx-container {
+        padding-top: 6rem;
+    }
+    
+    .tenx-features-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .dual-inputs {
+        grid-template-columns: 1fr;
+    }
+    
+    .tenx-stats-strip {
+        flex-direction: column;
+        gap: 2rem;
+    }
+}

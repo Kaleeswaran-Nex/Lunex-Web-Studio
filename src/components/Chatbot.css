@@ -42,6 +42,32 @@ body.chatbot-open .floating-action-buttons {
   line-height: 1.4;
 }
 
+.greeting-close-btn {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: #666;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+  z-index: 10004;
+}
+
+.greeting-close-btn:hover {
+  background: #f8fbff;
+  color: #1a1a1a;
+  transform: scale(1.1);
+}
+
 .chatbot-greeting::after {
   content: '';
   position: absolute;
