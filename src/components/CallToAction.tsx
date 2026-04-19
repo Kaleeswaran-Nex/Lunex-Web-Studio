@@ -94,7 +94,7 @@ const CallToAction = () => {
 
                     <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
                         <motion.a
-                            href="#connect"
+                            href="/#connect"
                             whileHover={{ scale: 1.04, boxShadow: '0 0 50px rgba(251, 191, 36, 0.5)' }}
                             whileTap={{ scale: 0.97 }}
                             style={{

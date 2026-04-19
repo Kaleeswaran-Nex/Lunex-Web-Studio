@@ -151,7 +151,7 @@ const Navigation = () => {
                             transition={{ delay: 0.4, duration: 0.35 }}
                             style={{ width: '100%', textAlign: 'center', marginTop: '1.5rem', padding: '0 2rem' }}
                         >
-                            <a href="#connect" onClick={() => setIsOpen(false)} style={{
+                            <a href="/#connect" onClick={() => setIsOpen(false)} style={{
                                 display: 'block', padding: '1rem',
                                 background: 'linear-gradient(135deg, #fbbf24, #f59e0b)',
                                 color: '#030014', textDecoration: 'none',
@@ -254,7 +254,7 @@ const Navigation = () => {
                     })}
                     {/* Desktop CTA Button */}
                     <motion.a
-                        href="#connect"
+                        href="/#connect"
                         whileHover={{ scale: 1.03, boxShadow: '0 0 20px rgba(251, 191, 36, 0.4)' }}
                         whileTap={{ scale: 0.97 }}
                         className="nav-cta-btn"

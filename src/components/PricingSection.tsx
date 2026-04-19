@@ -3,7 +3,8 @@ import { motion } from 'framer-motion';
 const plans = [
     {
         name: 'Starter',
-        price: '$399',
+        priceINR: '₹9,999',
+        priceUSD: '$120',
         period: 'one-time',
         description: 'Perfect for personal brands & small businesses getting started online.',
         features: [
@@ -20,7 +21,8 @@ const plans = [
     },
     {
         name: 'Professional',
-        price: '$899',
+        priceINR: '₹19,999',
+        priceUSD: '$240',
         period: 'one-time',
         description: 'Ideal for growing businesses that need a complete online presence.',
         features: [
@@ -39,7 +41,8 @@ const plans = [
     },
     {
         name: 'E-Commerce',
-        price: '$1,499',
+        priceINR: '₹34,999',
+        priceUSD: '$420',
         period: 'one-time',
         description: 'Full-featured online store to sell products & services worldwide.',
         features: [
@@ -196,16 +199,22 @@ const PricingSection = () => {
                         </h3>
 
                         {/* Price */}
-                        <div style={{ marginBottom: '0.5rem' }}>
-                            <span style={{
-                                fontSize: 'clamp(2.5rem, 5vw, 3.2rem)',
-                                fontFamily: 'var(--font-heading)', fontWeight: 700,
-                                color: '#fff',
-                            }}>
-                                {plan.price}
-                            </span>
-                            <span style={{ color: 'var(--accent-dim)', fontSize: '0.9rem', marginLeft: '0.3rem' }}>
-                                /{plan.period}
+                        <div style={{ marginBottom: '0.5rem', display: 'flex', flexDirection: 'column' }}>
+                            <div style={{ display: 'flex', alignItems: 'baseline' }}>
+                                <span style={{
+                                    fontSize: 'clamp(2.5rem, 5vw, 3.2rem)',
+                                    fontFamily: 'var(--font-heading)', fontWeight: 700,
+                                    color: '#fff',
+                                    lineHeight: 1.1
+                                }}>
+                                    {plan.priceINR}
+                                </span>
+                                <span style={{ color: 'var(--accent-dim)', fontSize: '0.9rem', marginLeft: '0.3rem' }}>
+                                    /{plan.period}
+                                </span>
+                            </div>
+                            <span style={{ color: 'var(--accent-gold)', fontSize: '1.2rem', fontWeight: 600, marginTop: '0.5rem' }}>
+                                {plan.priceUSD}
                             </span>
                         </div>
 
@@ -229,7 +238,7 @@ const PricingSection = () => {
 
                         {/* CTA */}
                         <motion.a
-                            href="#connect"
+                            href="/#connect"
                             whileHover={{ scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
                             style={{
@@ -266,7 +275,7 @@ const PricingSection = () => {
             >
                 <p style={{ color: 'var(--accent-dim)', fontSize: '0.95rem' }}>
                     Need something custom?{' '}
-                    <a href="#connect" style={{ color: 'var(--accent-gold)', textDecoration: 'underline' }}>
+                    <a href="/#connect" style={{ color: 'var(--accent-gold)', textDecoration: 'underline' }}>
                         Get a custom quote
                     </a>{' '}
                     — Enterprise, SaaS, and large-scale projects welcome.

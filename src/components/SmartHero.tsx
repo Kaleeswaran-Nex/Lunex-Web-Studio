@@ -3,9 +3,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import heroImg from '../assets/hero_workspace.png';
 
-interface Props {
-    cursorPos: { x: number; y: number };
-}
+
 
 const rotatingWords = [
     'Drive Revenue',
@@ -22,8 +20,14 @@ const trustBadges = [
     { icon: '💰', text: 'Save 70% vs US Agencies' },
 ];
 
-const SmartHero: React.FC<Props> = ({ cursorPos }) => {
+const SmartHero: React.FC = () => {
     const containerRef = useRef<HTMLElement>(null);
+    const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
+
+    const handleMouseMove = (e: React.MouseEvent) => {
+        setCursorPos({ x: e.clientX, y: e.clientY });
+    };
+    
     const { scrollY } = useScroll();
     const opacityText = useTransform(scrollY, [0, 400], [1, 0]);
     const yParallax = useTransform(scrollY, [0, 500], [0, 100]);
@@ -63,6 +67,7 @@ const SmartHero: React.FC<Props> = ({ cursorPos }) => {
     return (
         <section
             ref={containerRef}
+            onMouseMove={handleMouseMove}
             style={{
                 height: '100vh',
                 width: '100%',
@@ -207,7 +212,7 @@ const SmartHero: React.FC<Props> = ({ cursorPos }) => {
                     }}
                 >
                     <motion.a
-                        href="#connect"
+                        href="/#connect"
                         whileHover={{ scale: 1.04, boxShadow: '0 0 40px rgba(251, 191, 36, 0.5)' }}
                         whileTap={{ scale: 0.97 }}
                         style={{

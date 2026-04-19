@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 import SmartHero from '../components/SmartHero'
 import MarqueeBanner from '../components/MarqueeBanner'
 import AIInquiry from '../components/AIInquiry'
@@ -17,16 +18,28 @@ import LogoMarquee from '../components/LogoMarquee'
 import Footer from '../components/Footer'
 
 const Home = () => {
-    const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
 
-    const handleMouseMove = (e: React.MouseEvent) => {
-        setCursorPos({ x: e.clientX, y: e.clientY });
-    };
+    const location = useLocation();
+
+    useEffect(() => {
+        if (location.hash) {
+            const id = location.hash.replace('#', '');
+            const element = document.getElementById(id);
+            if (element) {
+                // Add a small delay for smoother transition if navigating from another page
+                setTimeout(() => {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                }, 100);
+            }
+        } else {
+            window.scrollTo(0, 0);
+        }
+    }, [location]);
 
     return (
-        <main className="home-container" onMouseMove={handleMouseMove}>
+        <main className="home-container">
             <FloatingParticles />
-            <SmartHero cursorPos={cursorPos} />
+            <SmartHero />
             <MarqueeBanner />
             <LogoMarquee />
             <ExoticServices />

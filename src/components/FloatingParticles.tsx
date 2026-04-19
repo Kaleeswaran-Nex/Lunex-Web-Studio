@@ -28,7 +28,7 @@ const FloatingParticles = () => {
         window.addEventListener('resize', resizeCanvas);
 
         const particles: Particle[] = [];
-        const particleCount = 60;
+        const particleCount = 25;
         const colors = ['#fbbf24', '#7c3aed', '#a78bfa', '#fcd34d']; // Gold and purple variants
 
         // Create particles
