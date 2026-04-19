@@ -3,12 +3,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
 // Import images
-import aura1 from '../assets/aura_1.png';
-import aura2 from '../assets/aura_2.png';
-import ecoplast1 from '../assets/ecoplast_1.png';
-import ecoplast2 from '../assets/ecoplast_2.png';
-import serviceAi from '../assets/service_ai.png';
-import serviceArchitecture from '../assets/service_architecture.png';
+import imgAura from '../assets/aura_site.png';
+import imgEcoplast from '../assets/ecoplast.png';
+import imgSolethreads from '../assets/solethreads_site.png';
 
 const projects = [
     {
@@ -16,40 +13,44 @@ const projects = [
         title: "Aura Digital",
         subtitle: "TRANSFORMING BRAND IDENTITY",
         logo: "A",
-        description: "We developed a robust digital ecosystem for Aura, a premium agency targeting high-growth businesses. The platform is designed to handle complex interactions while offering a sleek and user-friendly agency experience.",
-        image: aura2,
+        description: "A comprehensive digital ecosystem for Aura Digital Services. We focused on high-performance architecture and a premium aesthetic to reflect their market-leading position.",
+        image: imgAura,
         link: "https://auradigitalservices.in",
-        color: "#fbbf24"
+        color: "#fbbf24",
+        type: 'screenshot'
     },
     {
         id: 2,
         title: "Ecoplast",
         subtitle: "CRAFTING TIMELESS SPACES",
         logo: "EP",
-        description: "A high-end interior showcase for Ecoplast Interiors. We focused on visual storytelling through high-resolution galleries and seamless navigation, reflecting the premium quality of their physical interior works.",
-        image: ecoplast1,
+        description: "A sophisticated portfolio platform for Ecoplast Interiors. Designed to showcase their architectural masterpieces with high-fidelity imagery and fluid transitions.",
+        image: imgEcoplast,
         link: "https://ecoplastinteriors.com",
-        color: "#84cc16"
+        color: "#84cc16",
+        type: 'screenshot'
     },
     {
         id: 3,
         title: "Solethreads",
-        subtitle: "MODERN RETAIL FLOW",
+        subtitle: "MODERN RETAIL EXPERIENCE",
         logo: "S",
-        description: "A robust e-commerce platform for a modern shoe brand. We implemented a seamless checkout flow and high-performance product discovery to drive conversions and young audience engagement.",
-        image: aura1,
+        description: "Designing the next-generation digital storefront for Solethreads. We implemented a sleek, high-conversion landing sequence that aligns with their youthful brand identity.",
+        image: imgSolethreads,
         link: "https://solethreads.com",
-        color: "#3b82f6"
+        color: "#3b82f6",
+        type: 'screenshot'
     },
     {
         id: 4,
-        title: "Modern Luxe",
-        subtitle: "KITCHEN ARCHITECTURE",
+        title: "Kitchen Architecture",
+        subtitle: "MODERN LUXE BY ECOPLAST",
         logo: "ML",
-        description: "A specialized interior showcase focusing on minimalist and high-tech kitchen designs. The interface mirrors the precision and elegance of the physical architecture itself.",
-        image: ecoplast2,
+        description: "A specialized interior showcase focusing on minimalist and high-tech kitchen designs. The interface mirrors the precision and elegance of the physical architecture.",
+        image: imgEcoplast,
         link: "https://ecoplastinteriors.com/kitchens",
-        color: "#ef4444"
+        color: "#ef4444",
+        type: 'screenshot'
     },
     {
         id: 5,
@@ -57,9 +58,10 @@ const projects = [
         subtitle: "NEXT-GEN DASHBOARD",
         logo: "V",
         description: "An advanced SaaS dashboard design showcasing complex data visualization with a minimalist, high-productivity aesthetic. Built for speed and absolute clarity.",
-        image: serviceAi,
+        image: null,
         link: "https://vanguard-digital.com",
-        color: "#7c3aed"
+        color: "#7c3aed",
+        type: 'animation_dashboard'
     },
     {
         id: 6,
@@ -67,9 +69,10 @@ const projects = [
         subtitle: "DIGITAL ARCHITECTURE",
         logo: "IP",
         description: "A comprehensive client portal designed for large-scale enterprise management. we combined security with an intuitive exotic interface to redefine professional workflows.",
-        image: serviceArchitecture,
+        image: null,
         link: "https://infinite-arch.com",
-        color: "#22d3ee"
+        color: "#22d3ee",
+        type: 'animation_portal'
     }
 ];
 
@@ -230,29 +233,70 @@ const ProjectShowcase = () => {
                         <div style={{ position: 'relative' }}>
                             <div style={{
                                 background: '#1e1e1e',
-                                borderRadius: '1rem',
+                                borderRadius: '1.5rem',
                                 overflow: 'hidden',
                                 border: '1px solid rgba(255, 255, 255, 0.1)',
-                                boxShadow: '0 30px 60px rgba(0,0,0,0.5)'
+                                boxShadow: '0 30px 60px rgba(0,0,0,0.5)',
+                                position: 'relative'
                             }}>
                                 <div style={{
                                     height: '30px',
                                     background: '#2d2d2d',
                                     display: 'flex',
                                     alignItems: 'center',
-                                    padding: '0 0.8rem',
-                                    gap: '0.3rem'
+                                    padding: '0 1rem',
+                                    gap: '0.5rem',
+                                    borderBottom: '1px solid rgba(255,255,255,0.05)'
                                 }}>
-                                    <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#ff5f56' }}></div>
-                                    <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#ffbd2e' }}></div>
-                                    <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#27c93f' }}></div>
+                                    <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#ff5f56' }}></div>
+                                    <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#ffbd2e' }}></div>
+                                    <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#27c93f' }}></div>
+                                    <div style={{ marginLeft: 'auto', fontSize: '0.65rem', color: 'rgba(255,255,255,0.3)', letterSpacing: '1px' }}>
+                                        {current.link.replace('https://', '')}
+                                    </div>
                                 </div>
-                                <div style={{ height: 'clamp(250px, 40vw, 400px)', overflow: 'hidden' }}>
-                                    <img
-                                        src={current.image}
-                                        alt={current.title}
-                                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                                    />
+                                
+                                <div style={{ height: 'clamp(280px, 45vw, 450px)', overflow: 'hidden', position: 'relative', background: '#0e0e10' }}>
+                                    {current.type === 'screenshot' ? (
+                                        <motion.img
+                                            src={current.image!}
+                                            alt={current.title}
+                                            initial={{ scale: 1.1, opacity: 0 }}
+                                            animate={{ scale: 1, opacity: 1 }}
+                                            transition={{ duration: 0.8 }}
+                                            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                                        />
+                                    ) : current.type === 'animation_dashboard' ? (
+                                        <div style={{ width: '100%', height: '100%', padding: '2rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                                            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem' }}>
+                                                {[1,2,3].map(i => (
+                                                    <motion.div 
+                                                        key={i}
+                                                        animate={{ opacity: [0.3, 0.6, 0.3] }}
+                                                        transition={{ duration: 2, delay: i * 0.5, repeat: Infinity }}
+                                                        style={{ height: '80px', background: 'rgba(124, 58, 237, 0.1)', borderRadius: '12px', border: '1px solid rgba(124, 58, 237, 0.2)' }} 
+                                                    />
+                                                ))}
+                                            </div>
+                                            <div style={{ flex: 1, background: 'rgba(255,255,255,0.02)', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.05)', position: 'relative', overflow: 'hidden' }}>
+                                                <motion.div 
+                                                    animate={{ x: ['0%', '100%'], opacity: [0, 1, 0] }}
+                                                    transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                                                    style={{ position: 'absolute', top: 0, bottom: 0, width: '2px', background: 'var(--accent-gold)', boxShadow: '0 0 20px var(--accent-gold)' }}
+                                                />
+                                            </div>
+                                        </div>
+                                    ) : (
+                                        <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                            <motion.div 
+                                                animate={{ scale: [1, 1.1, 1], rotate: [0, 5, 0] }}
+                                                transition={{ duration: 4, repeat: Infinity }}
+                                                style={{ width: '200px', height: '200px', borderRadius: '50%', border: '2px dashed rgba(34, 211, 238, 0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                                            >
+                                                <div style={{ width: '140px', height: '140px', borderRadius: '50%', background: 'radial-gradient(circle, rgba(34, 211, 238, 0.2), transparent)' }} />
+                                            </motion.div>
+                                        </div>
+                                    )}
                                 </div>
                             </div>
                         </div>
