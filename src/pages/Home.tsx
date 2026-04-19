@@ -12,7 +12,6 @@ import WhyChooseUs from '../components/WhyChooseUs'
 import AboutFounder from '../components/AboutFounder'
 import Testimonials from '../components/Testimonials'
 import CallToAction from '../components/CallToAction'
-import FloatingParticles from '../components/FloatingParticles'
 import ScrollToTop from '../components/ScrollToTop'
 import LogoMarquee from '../components/LogoMarquee'
 import Footer from '../components/Footer'
@@ -38,7 +37,6 @@ const Home = () => {
 
     return (
         <main className="home-container">
-            <FloatingParticles />
             <SmartHero />
             <MarqueeBanner />
             <LogoMarquee />

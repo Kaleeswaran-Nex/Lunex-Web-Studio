@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import FloatingParticles from '../components/FloatingParticles';
 import Footer from '../components/Footer';
 import AboutFounder from '../components/AboutFounder';
 import ScrollToTop from '../components/ScrollToTop';
@@ -15,7 +14,6 @@ const About = () => {
 
     return (
         <main className="about-page">
-            <FloatingParticles />
             
             <section className="about-hero">
                 <div className="about-hero-image-wrapper">
