@@ -28,7 +28,13 @@ const Navigation = () => {
         return () => { document.body.style.overflow = ''; };
     }, [isOpen]);
 
-    const navLinks = ['Craft', 'Vision', 'Services', 'Our Work', 'Connect'];
+    const navLinks = [
+        { name: '10X YOUR BRAND', targetId: 'pricing' },
+        { name: 'HOME', targetId: '' },
+        { name: 'ABOUT', targetId: '/about', isRoute: true },
+        { name: 'SERVICES', targetId: 'services' },
+        { name: 'CONTACT', targetId: 'connect' }
+    ];
 
     const servicesList = [
         { name: 'Digital Marketing', path: '/services/digital-marketing' },
@@ -81,9 +87,9 @@ const Navigation = () => {
                     {/* Nav Links */}
                     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', maxWidth: '320px', marginTop: '100px', paddingBottom: '100px' }}>
                         {navLinks.map((item, index) => {
-                            if (item === 'Services') {
+                            if (item.name === 'SERVICES') {
                                 return (
-                                    <motion.div key={item} initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }}
+                                    <motion.div key={item.name} initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }}
                                         transition={{ delay: 0.05 + index * 0.08, duration: 0.35 }}
                                         style={{ width: '100%', textAlign: 'center' }}
                                     >
@@ -93,7 +99,7 @@ const Navigation = () => {
                                             padding: '1.25rem 2rem', borderBottom: '1px solid rgba(251, 191, 36, 0.1)',
                                             cursor: 'pointer', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '0.5rem'
                                         }}>
-                                            {item}
+                                            {item.name}
                                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ transform: mobileServicesOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.3s' }}>
                                                 <polyline points="6 9 12 15 18 9"></polyline>
                                             </svg>
@@ -121,10 +127,9 @@ const Navigation = () => {
                                 );
                             }
 
-                            const isOurWork = item === 'Our Work';
-                            const target = isOurWork ? '/our-work' : (isHome ? `#${item.toLowerCase()}` : `/#${item.toLowerCase()}`);
+                            const target = item.isRoute ? item.targetId : (isHome ? `#${item.targetId}` : `/#${item.targetId}`);
                             return (
-                                <motion.div key={item} initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }}
+                                <motion.div key={item.name} initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: 0.05 + index * 0.08, duration: 0.35 }}
                                     style={{ width: '100%', textAlign: 'center' }}
                                 >
@@ -135,7 +140,7 @@ const Navigation = () => {
                                         display: 'block', padding: '1.25rem 2rem',
                                         borderBottom: index < navLinks.length - 1 ? '1px solid rgba(251, 191, 36, 0.1)' : 'none',
                                     }}>
-                                        {item}
+                                        {item.name}
                                     </Link>
                                 </motion.div>
                             );
@@ -209,15 +214,15 @@ const Navigation = () => {
                 {/* Desktop Links */}
                 <div className="desktop-links" style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
                     {navLinks.map((item) => {
-                        if (item === 'Services') {
+                        if (item.name === 'SERVICES') {
                             return (
-                                <div key={item} className="nav-dropdown-container">
+                                <div key={item.name} className="nav-dropdown-container">
                                     <div style={{
                                         display: 'flex', alignItems: 'center', gap: '0.25rem',
                                         fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.15em',
                                         color: 'var(--accent-cream)', opacity: 0.8, cursor: 'pointer',
                                     }} className="nav-dropdown-trigger">
-                                        {item}
+                                        {item.name}
                                         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                             <polyline points="6 9 12 15 18 9"></polyline>
                                         </svg>
@@ -235,16 +240,15 @@ const Navigation = () => {
                             );
                         }
 
-                        const isOurWork = item === 'Our Work';
-                        const target = isOurWork ? '/our-work' : (isHome ? `#${item.toLowerCase()}` : `/#${item.toLowerCase()}`);
+                        const target = item.isRoute ? item.targetId : (isHome ? `#${item.targetId}` : `/#${item.targetId}`);
                         return (
-                            <Link key={item} to={target} className="nav-link-item" style={{
+                            <Link key={item.name} to={target} className="nav-link-item" style={{
                                 textDecoration: 'none', fontSize: '0.75rem',
                                 textTransform: 'uppercase', letterSpacing: '0.15em',
                                 color: 'var(--accent-cream)', opacity: 0.8,
                                 transition: 'opacity 0.3s',
                             }}>
-                                {item}
+                                {item.name}
                             </Link>
                         );
                     })}

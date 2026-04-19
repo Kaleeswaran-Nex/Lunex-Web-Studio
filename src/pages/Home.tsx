@@ -8,6 +8,7 @@ import PricingSection from '../components/PricingSection'
 import ProjectShowcase from '../components/ProjectShowcase'
 import StatsSection from '../components/StatsSection'
 import WhyChooseUs from '../components/WhyChooseUs'
+import AboutFounder from '../components/AboutFounder'
 import Testimonials from '../components/Testimonials'
 import CallToAction from '../components/CallToAction'
 import FloatingParticles from '../components/FloatingParticles'
@@ -33,6 +34,7 @@ const Home = () => {
             <ProjectShowcase />
             <StatsSection />
             <WhyChooseUs />
+            <AboutFounder />
             <Testimonials />
             <ProcessSection />
             <CallToAction />

@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom'
 import Navigation from './components/Navigation'
 import Home from './pages/Home'
 import OurWork from './pages/OurWork'
+import About from './pages/About'
 import TopContactBar from './components/TopContactBar'
 import LoadingScreen from './components/LoadingScreen'
 import PromoModal from './components/PromoModal'
@@ -39,6 +40,7 @@ function App() {
       <Navigation />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
         <Route path="/our-work" element={<OurWork />} />
       </Routes>
       <Chatbot />
