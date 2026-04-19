@@ -11,12 +11,21 @@ interface Message {
 
 const Chatbot: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [showGreeting, setShowGreeting] = useState(true);
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState('');
   const [step, setStep] = useState(0);
   const [formData, setFormData] = useState<any>({});
-  
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  
+  useEffect(() => {
+    if (isOpen) {
+      document.body.classList.add('chatbot-open');
+    } else {
+      document.body.classList.remove('chatbot-open');
+    }
+    return () => document.body.classList.remove('chatbot-open');
+  }, [isOpen]);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -31,6 +40,7 @@ const Chatbot: React.FC = () => {
       setTimeout(() => {
         addBotMessage("Hi, Welcome to Lunex Web Studio! 👋\n\nWhat's your name?");
       }, 500);
+      setShowGreeting(false);
     }
   }, [isOpen]);
 
@@ -139,6 +149,11 @@ const Chatbot: React.FC = () => {
     setFormData(updatedData);
   };
 
+  const toggleChat = () => {
+    setIsOpen(!isOpen);
+    if (!isOpen) setShowGreeting(false);
+  };
+
   return (
     <div className="chatbot-container">
       {isOpen && (
@@ -146,8 +161,11 @@ const Chatbot: React.FC = () => {
           <div className="chatbot-header">
             <div className="chatbot-header-info">
               <div className="chatbot-avatar">
-                <svg viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 2C6.48 2 2 6.48 2 12c0 5.52 4.48 10 10 10s10-4.48 10-10C22 6.48 17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+                <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+                  <path d="M12 2C6.477 2 2 6.477 2 12c0 1.821.487 3.53 1.338 5L2 22l5-1.338C8.47 21.513 10.179 22 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18c-1.477 0-2.872-.345-4.113-.96l-3.325.89.89-3.325C4.845 15.372 4.5 13.725 4.5 12c0-4.142 3.358-7.5 7.5-7.5s7.5 3.358 7.5 7.5-3.358 7.5-7.5 7.5z"/>
+                  <circle cx="9" cy="11.5" r="1.5" />
+                  <circle cx="15" cy="11.5" r="1.5" />
+                  <path d="M8.5 15c.658.658 2.343 1 2.5 1s1.842-.342 2.5-1" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
                 </svg>
               </div>
               <div>
@@ -156,7 +174,7 @@ const Chatbot: React.FC = () => {
               </div>
             </div>
             <button className="chatbot-close" onClick={() => setIsOpen(false)}>
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                 <line x1="18" y1="6" x2="6" y2="18"></line>
                 <line x1="6" y1="6" x2="18" y2="18"></line>
               </svg>
@@ -168,8 +186,11 @@ const Chatbot: React.FC = () => {
               <div key={msg.id} className={`chatbot-message-wrapper ${msg.sender}`}>
                 {msg.sender === 'bot' && (
                    <div className="bot-icon">
-                     <svg viewBox="0 0 24 24" fill="currentColor">
-                       <path d="M12 2C6.48 2 2 6.48 2 12c0 5.52 4.48 10 10 10s10-4.48 10-10C22 6.48 17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+                     <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
+                        <path d="M12 2C6.477 2 2 6.477 2 12c0 1.821.487 3.53 1.338 5L2 22l5-1.338C8.47 21.513 10.179 22 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18c-1.477 0-2.872-.345-4.113-.96l-3.325.89.89-3.325C4.845 15.372 4.5 13.725 4.5 12c0-4.142 3.358-7.5 7.5-7.5s7.5 3.358 7.5 7.5-3.358 7.5-7.5 7.5z"/>
+                        <circle cx="9" cy="11.5" r="1.5" />
+                        <circle cx="15" cy="11.5" r="1.5" />
+                        <path d="M8.5 15c.658.658 2.343 1 2.5 1s1.842-.342 2.5-1" stroke="white" strokeWidth="1.2" strokeLinecap="round" fill="none" />
                      </svg>
                    </div>
                 )}
@@ -202,7 +223,7 @@ const Chatbot: React.FC = () => {
                 onKeyDown={(e) => e.key === 'Enter' && handleSend()}
               />
               <button className="chatbot-send-btn" onClick={() => handleSend()} aria-label="Send Message">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                   <line x1="22" y1="2" x2="11" y2="13"></line>
                   <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
                 </svg>
@@ -212,16 +233,31 @@ const Chatbot: React.FC = () => {
         </div>
       )}
 
-      {!isOpen && (
-        <button className="chatbot-launcher" onClick={() => setIsOpen(true)} aria-label="Open Chat">
+      {showGreeting && !isOpen && (
+        <div className="chatbot-greeting" onClick={toggleChat}>
+          <p>Hi, Welcome to Lunex Web Studio!!</p>
+        </div>
+      )}
+
+      <button 
+        className={`chatbot-launcher ${isOpen ? 'active' : ''}`} 
+        onClick={toggleChat} 
+        aria-label="Open Chat"
+      >
+        {!isOpen ? (
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
             <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
-            <path d="M9 10h.01"></path>
-            <path d="M15 10h.01"></path>
-            <path d="M9.5 15c.658.658 2.343 1 2.5 1s1.842-.342 2.5-1"></path>
+            <circle cx="9" cy="11.5" r="0.5" fill="currentColor" />
+            <circle cx="15" cy="11.5" r="0.5" fill="currentColor" />
+            <path d="M9.5 15c.658.658 2.343 1 2.5 1s1.842-.342 2.5-1" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
           </svg>
-        </button>
-      )}
+        ) : (
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        )}
+      </button>
     </div>
   );
 };
