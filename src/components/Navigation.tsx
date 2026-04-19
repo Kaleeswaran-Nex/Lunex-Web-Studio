@@ -70,6 +70,12 @@ const Navigation = () => {
                         display: 'flex', flexDirection: 'column',
                         padding: '1.2rem',
                         overflowY: 'auto',
+                        backgroundImage: `
+                            radial-gradient(circle at 10% 20%, rgba(124, 58, 237, 0.03) 0%, transparent 40%),
+                            radial-gradient(circle at 90% 80%, rgba(251, 191, 36, 0.03) 0%, transparent 40%),
+                            url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.015'/%3E%3C/svg%3E")
+                        `,
+                        backgroundAttachment: 'fixed'
                     }}
                 >
                     {/* Header with Logo and Close */}
@@ -78,14 +84,14 @@ const Navigation = () => {
                         marginBottom: '2rem', paddingBottom: '1rem'
                     }}>
                         <Link to="/" onClick={() => setIsOpen(false)} style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', textDecoration: 'none' }}>
-                             <div style={{ width: '32px', height: '32px', borderRadius: '50%', overflow: 'hidden', border: '1px solid #5a0c1a22' }}>
+                             <div style={{ width: '32px', height: '32px', borderRadius: '50%', overflow: 'hidden', border: '1px solid #4c1d9522' }}>
                                 <img src={logo} alt="Logo" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                             </div>
-                            <span style={{ fontFamily: '"Outfit", sans-serif', fontSize: '1rem', letterSpacing: '0.1em', fontWeight: 800, color: '#5a0c1a' }}>LUNEX</span>
+                            <span style={{ fontFamily: '"Outfit", sans-serif', fontSize: '1rem', letterSpacing: '0.1em', fontWeight: 800, color: '#4c1d95' }}>LUNEX</span>
                         </Link>
                         
                         <div onClick={toggleMenu} style={{ cursor: 'pointer', padding: '0.4rem' }}>
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5a0c1a" strokeWidth="1.5">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4c1d95" strokeWidth="1.5">
                                 <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
                             </svg>
                         </div>
@@ -95,8 +101,8 @@ const Navigation = () => {
                     <div style={{ 
                         background: '#fff', 
                         borderRadius: '1.5rem', 
-                        border: '1px solid rgba(90, 12, 26, 0.06)',
-                        boxShadow: '0 10px 30px rgba(90, 12, 26, 0.04)',
+                        border: '1px solid rgba(76, 29, 149, 0.06)',
+                        boxShadow: '0 10px 30px rgba(76, 29, 149, 0.04)',
                         overflow: 'hidden'
                     }}>
                         {navLinks.map((item, index) => {
@@ -104,16 +110,16 @@ const Navigation = () => {
                              
                              if (item.name === 'SERVICES') {
                                 return (
-                                    <div key={item.name} style={{ borderBottom: index < navLinks.length - 1 ? '1px solid rgba(90, 12, 26, 0.05)' : 'none' }}>
+                                    <div key={item.name} style={{ borderBottom: index < navLinks.length - 1 ? '1px solid rgba(76, 29, 149, 0.05)' : 'none' }}>
                                         <div onClick={() => setMobileServicesOpen(!mobileServicesOpen)} style={{
                                             padding: '1.5rem 1.8rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center',
                                             cursor: 'pointer', transition: 'background 0.2s'
                                         }}>
                                             <span style={{ 
-                                                fontFamily: 'var(--font-serif)', fontSize: '1.8rem', color: '#5a0c1a', 
+                                                fontFamily: 'var(--font-serif)', fontSize: '1.8rem', color: '#4c1d95', 
                                                 fontWeight: 500, letterSpacing: '-0.01em' 
                                             }}>{item.name}</span>
-                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5a0c1a" strokeWidth="1.2" style={{ transform: mobileServicesOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)' }}>
+                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4c1d95" strokeWidth="1.2" style={{ transform: mobileServicesOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)' }}>
                                                 <polyline points="6 9 12 15 18 9"></polyline>
                                             </svg>
                                         </div>
@@ -124,16 +130,16 @@ const Navigation = () => {
                                                     initial={{ height: 0, opacity: 0 }}
                                                     animate={{ height: 'auto', opacity: 1 }}
                                                     exit={{ height: 0, opacity: 0 }}
-                                                    style={{ overflow: 'hidden', background: 'rgba(90, 12, 26, 0.02)' }}
+                                                    style={{ overflow: 'hidden', background: 'rgba(76, 29, 149, 0.02)' }}
                                                 >
                                                     {servicesList.map((service) => (
                                                         <Link key={service.name} to={service.path} onClick={() => setIsOpen(false)} style={{
                                                             display: 'flex', justifyContent: 'space-between', alignItems: 'center',
                                                             padding: '1.2rem 2.2rem', textDecoration: 'none',
-                                                            borderBottom: '1px solid rgba(90, 12, 26, 0.03)'
+                                                            borderBottom: '1px solid rgba(76, 29, 149, 0.03)'
                                                         }}>
-                                                            <span style={{ color: '#5a0c1a99', fontSize: '1.1rem', fontFamily: 'var(--font-serif)' }}>{service.name}</span>
-                                                            <span style={{ color: '#5a0c1a44', fontSize: '1.2rem' }}>↗</span>
+                                                            <span style={{ color: '#4c1d9599', fontSize: '1.1rem', fontFamily: 'var(--font-serif)' }}>{service.name}</span>
+                                                            <span style={{ color: '#4c1d9544', fontSize: '1.2rem' }}>↗</span>
                                                         </Link>
                                                     ))}
                                                 </motion.div>
@@ -151,15 +157,15 @@ const Navigation = () => {
                                     style={{
                                         display: 'flex', justifyContent: 'space-between', alignItems: 'center',
                                         padding: '1.5rem 1.8rem', textDecoration: 'none',
-                                        borderBottom: index < navLinks.length - 1 ? '1px solid rgba(90, 12, 26, 0.05)' : 'none',
+                                        borderBottom: index < navLinks.length - 1 ? '1px solid rgba(76, 29, 149, 0.05)' : 'none',
                                         transition: 'background 0.2s'
                                     }}
                                 >
                                     <span style={{ 
-                                        fontFamily: 'var(--font-serif)', fontSize: '1.8rem', color: '#5a0c1a', 
+                                        fontFamily: 'var(--font-serif)', fontSize: '1.8rem', color: '#4c1d95', 
                                         fontWeight: 500, letterSpacing: '-0.01em' 
                                     }}>{item.name}</span>
-                                    <span style={{ color: '#5a0c1a55', fontSize: '1.6rem', fontWeight: 300 }}>↗</span>
+                                    <span style={{ color: '#4c1d9555', fontSize: '1.6rem', fontWeight: 300 }}>↗</span>
                                 </Link>
                              );
                         })}
@@ -169,12 +175,12 @@ const Navigation = () => {
                     <div style={{ marginTop: '2rem' }}>
                         <a href="/#connect" onClick={() => setIsOpen(false)} style={{
                             display: 'block', padding: '1.2rem',
-                            background: '#5a0c1a',
+                            background: '#4c1d95',
                             color: '#fff', textDecoration: 'none',
                             fontFamily: 'var(--font-heading)', fontSize: '0.9rem',
                             fontWeight: 700, letterSpacing: '0.15em',
                             borderRadius: '1rem', textAlign: 'center',
-                            boxShadow: '0 8px 25px rgba(90, 12, 26, 0.15)'
+                            boxShadow: '0 8px 25px rgba(76, 29, 149, 0.15)'
                         }}>
                             GET A FREE QUOTE
                         </a>
